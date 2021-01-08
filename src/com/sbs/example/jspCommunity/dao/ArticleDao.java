@@ -26,8 +26,6 @@ public class ArticleDao {
 			sql.append("WHERE article.boardId = ?", boardId);
 		}
 		sql.append("ORDER BY article.id DESC");
-		
-		System.out.println("sql.getRawSql() : " + sql.getRawSql());
 
 		List<Map<String, Object>> articleListMap = MysqlUtil.selectRows(sql);
 

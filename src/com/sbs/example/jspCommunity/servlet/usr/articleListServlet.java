@@ -17,7 +17,7 @@ import com.sbs.example.jspCommunity.util.MysqlUtil;
 import com.sbs.example.jspCommunity.util.SecSql;
 
 @WebServlet("/usr/article/list")
-public class articleListServlet extends HttpServlet {
+public class ArticleListServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -26,9 +26,8 @@ public class articleListServlet extends HttpServlet {
 		MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "jspCommunity");
 
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
-		
-		ArticleService articleService = Container.articleService;
-		List<Article> articles = articleService.getForPrintArticlesByBoardId(boardId);
+
+		List<Article> articles = Container.articleService.getForPrintArticlesByBoardId(boardId);
 
 		MysqlUtil.closeConnection();
 
