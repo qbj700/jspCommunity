@@ -2,8 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.Map"%>
 <%@ page import="java.util.List"%>
+<%@ page import="com.sbs.example.jspCommunity.dto.Article"%>
 <%
-	List<Map<String, Object>> articleListMap = (List<Map<String, Object>>) request.getAttribute("articleListMap");
+	List<Article> articles = (List<Article>) request.getAttribute("articles");
 %>
 <!doctype html>
 <html lang="ko">
@@ -14,19 +15,19 @@
 <body>
 	<h1>게시물 리스트</h1>
 	<%
-		for (Map<String, Object> articleMap : articleListMap) {
+		for (Article article : articles) {
 	%>
 	<div>
 		번호 :
-		<%=articleMap.get("id")%>
+		<%=article.id%>
 		<br /> 작성일 :
-		<%=articleMap.get("regDate")%>
+		<%=article.regDate%>
 		<br /> 작성자 :
-		<%=articleMap.get("extra__writer")%>
+		<%=article.extra__writer%>
 		<br /> 제목 :
-		<%=articleMap.get("title")%>
+		<%=article.title%>
 		<br /> 내용 :
-		<%=articleMap.get("body")%>
+		<%=article.body%>
 		<hr />
 	</div>
 	<%

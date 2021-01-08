@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sbs.example.jspCommunity.container.Container;
+import com.sbs.example.jspCommunity.dto.Article;
+import com.sbs.example.jspCommunity.service.ArticleService;
 import com.sbs.example.jspCommunity.util.MysqlUtil;
 import com.sbs.example.jspCommunity.util.SecSql;
 
@@ -22,47 +25,15 @@ public class articleListServlet extends HttpServlet {
 
 		MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "jspCommunity");
 
-		String boardCode = req.getParameter("boardCode");
-		Map<String, Object> boardMap = getBoardByBoardCode(boardCode);
-		List<Map<String, Object>> articleListMap = getArticlesByBoardId((int) boardMap.get("id"));
+		int boardId = Integer.parseInt(req.getParameter("boardId"));
+		
+		ArticleService articleService = Container.articleService;
+		List<Article> articles = articleService.getForPrintArticlesByBoardId(boardId);
 
 		MysqlUtil.closeConnection();
 
-		req.setAttribute("boardMap", boardMap);
-		req.setAttribute("articleListMap", articleListMap);
+		req.setAttribute("articles", articles);
 
 		req.getRequestDispatcher("/jsp/usr/article/list.jsp").forward(req, resp);
-	}
-
-	private Map<String, Object> getBoardByBoardCode(String boardCode) {
-		SecSql sql = new SecSql();
-		sql.append("SELECT *");
-		sql.append("FROM board");
-		sql.append("WHERE `code` = ?", boardCode);
-
-		Map<String, Object> boardMap = MysqlUtil.selectRow(sql);
-
-		return boardMap;
-	}
-
-	private List<Map<String, Object>> getArticlesByBoardId(int boardId) {
-
-		SecSql sql = new SecSql();
-		sql.append("SELECT article.*, member.name AS extra__writer");
-		sql.append(",board.name AS extra__boardName");
-		sql.append(",board.code AS extra__boardCode");
-		sql.append("FROM article");
-		sql.append("INNER JOIN `member`");
-		sql.append("ON article.memberId = member.id");
-		sql.append("INNER JOIN `board`");
-		sql.append("ON article.boardId = board.id");
-		if (boardId != 0) {
-			sql.append("WHERE article.boardId = ?", boardId);
-		}
-		sql.append("ORDER BY article.id DESC");
-
-		List<Map<String, Object>> articleListMap = MysqlUtil.selectRows(sql);
-
-		return articleListMap;
 	}
 }
