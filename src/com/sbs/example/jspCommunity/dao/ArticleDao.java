@@ -38,4 +38,17 @@ public class ArticleDao {
 		return articles;
 	}
 
+	public Article getForPrintArticleById(int id) {
+
+		SecSql sql = new SecSql();
+		sql.append("SELECT article.*,member.name AS extra__writer");
+		sql.append("FROM article");
+		sql.append("INNER JOIN member");
+		sql.append("ON article.id = ? AND article.memberId = member.id", id);
+
+		Map<String, Object> articleMap = MysqlUtil.selectRow(sql);
+
+		return new Article(articleMap);
+	}
+
 }
