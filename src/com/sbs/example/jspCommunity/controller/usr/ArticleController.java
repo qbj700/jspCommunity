@@ -77,4 +77,32 @@ public class ArticleController {
 		return "usr/article/doModify";
 	}
 
+	public String doDelete(HttpServletRequest req, HttpServletResponse resp) {
+		int id = Integer.parseInt(req.getParameter("id"));
+		int memberId = Integer.parseInt(req.getParameter("memberId"));
+
+		String message = "";
+
+		Article article = articleService.getArticleById(id);
+
+		if (article == null) {
+			message = id + "번 게시물은 존재하지 않습니다.";
+		}
+
+		if (article != null) {
+			if (article.memberId != memberId) {
+				message = "삭제할 권한이 없습니다.";
+			}
+
+			if (article.memberId == memberId) {
+				articleService.delete(id);
+				message = id + "번 게시물이 삭제되었습니다.";
+			}
+		}
+
+		req.setAttribute("message", message);
+		
+		return "usr/article/doDelete";
+	}
+
 }
