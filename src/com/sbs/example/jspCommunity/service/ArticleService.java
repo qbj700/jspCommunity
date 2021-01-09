@@ -22,4 +22,9 @@ public class ArticleService {
 		return articleDao.getForPrintArticleById(id);
 	}
 
+	public int addArticle(String title, String body, int memberId, int boardId) {
+		return articleDao.addArticle(title, body, memberId, boardId);
+
+	};
+
 }

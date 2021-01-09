@@ -51,4 +51,18 @@ public class ArticleDao {
 		return new Article(articleMap);
 	}
 
+	public int addArticle(String title, String body, int memberId, int boardId) {
+		SecSql sql = new SecSql();
+		sql.append("INSERT INTO article");
+		sql.append("SET regDate = NOW(),");
+		sql.append("updateDate = NOW(),");
+		sql.append("title = ?,", title);
+		sql.append("body = ?,", body);
+		sql.append("memberId = ?,", memberId);
+		sql.append("boardId = ?", boardId);
+
+		return MysqlUtil.insert(sql);
+
+	}
+
 }
