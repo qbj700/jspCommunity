@@ -47,4 +47,34 @@ public class ArticleController {
 		return "usr/article/doWrite";
 	}
 
+	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
+		int id = Integer.parseInt(req.getParameter("id"));
+		String title = req.getParameter("title");
+		String body = req.getParameter("body");
+		int memberId = Integer.parseInt(req.getParameter("memberId"));
+
+		String message = "";
+
+		Article article = articleService.getArticleById(id);
+
+		if (article == null) {
+			message = id + "번 게시물은 존재하지 않습니다.";
+		}
+
+		if (article != null) {
+			if (article.memberId != memberId) {
+				message = "수정할 권한이 없습니다.";
+			}
+
+			if (article.memberId == memberId) {
+				articleService.modify(title, body, id);
+				message = id + "번 게시물이 수정되었습니다.";
+			}
+		}
+
+		req.setAttribute("message", message);
+
+		return "usr/article/doModify";
+	}
+
 }

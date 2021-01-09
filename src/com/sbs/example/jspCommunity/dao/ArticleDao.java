@@ -65,4 +65,35 @@ public class ArticleDao {
 
 	}
 
+	public Article getArticleById(int id) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT *");
+		sql.append("FROM article");
+		sql.append("WHERE id = ?", id);
+
+		Map<String, Object> articleMap = MysqlUtil.selectRow(sql);
+
+		if (articleMap.isEmpty()) {
+			return null;
+		}
+
+		return new Article(articleMap);
+	}
+
+	public void modify(String title, String body, int id) {
+		SecSql sql = new SecSql();
+
+		sql.append("UPDATE article");
+		sql.append("SET updateDate = NOW(),");
+		if (title != null) {
+			sql.append("title = ?,", title);
+		}
+		if (body != null) {
+			sql.append("body = ?", body);
+		}
+		sql.append("WHERE id = ?", id);
+
+		MysqlUtil.update(sql);
+	}
+
 }
