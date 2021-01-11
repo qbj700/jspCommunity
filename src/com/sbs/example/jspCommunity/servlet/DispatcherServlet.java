@@ -96,8 +96,11 @@ public class DispatcherServlet extends HttpServlet {
 		if (controllerName.equals("article")) {
 			ArticleController articleController = Container.articleController;
 
-			if (actionMethodName.equals("doWrite")) {
+			if (actionMethodName.equals("writeResult")) {
 				jspPath = articleController.write(req, resp);
+			}
+			if (actionMethodName.equals("modifyResult")) {
+				jspPath = articleController.modify(req, resp);
 			}
 
 		}

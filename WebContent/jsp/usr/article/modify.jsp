@@ -4,7 +4,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.sbs.example.jspCommunity.dto.Article"%>
 <%
-	String message = (String) request.getAttribute("message");
+	int id = (int)request.getAttribute("id");
 %>
 <!doctype html>
 <html lang="ko">
@@ -16,7 +16,16 @@
 	<h1>게시물 수정</h1>
 
 	<div>
-		<h2><%=message %></h2>
+		<form action="/jspCommunity/usr/article/modifyResult" method="POST" target="_blank">
+			<input type="hidden" name="id" value="<%=id %>">
+			<hr>
+			<input type="text" name="title" placeholder="제목을 입력해주세요." maxlength="100">
+			<hr>
+			<textarea type="text" name="body" placeholder="내용을 입력해주세요." maxlength="1000"></textarea>
+			<hr>
+			<input type="submit" value="전송">
+			<hr>
+		</form>	
 	</div>
 </body>
 </html>
