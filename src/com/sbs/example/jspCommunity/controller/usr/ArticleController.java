@@ -40,14 +40,12 @@ public class ArticleController {
 	}
 
 	public String doWrite(HttpServletRequest req, HttpServletResponse resp) {
-		String title = req.getParameter("title");
-		String body = req.getParameter("body");
+		
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 
-		int articleId = articleService.addArticle(title, body, memberId, boardId);
-
-		req.setAttribute("articleId", articleId);
+		req.setAttribute("boardId", boardId);
+		req.setAttribute("memberId", memberId);
 
 		return "usr/article/write";
 	}
@@ -110,4 +108,18 @@ public class ArticleController {
 		return "usr/article/delete";
 	}
 
+	public String write(HttpServletRequest req, HttpServletResponse resp) {
+		String title = req.getParameter("title");
+		String body = req.getParameter("body");
+		int boardId = Integer.parseInt(req.getParameter("boardId"));
+		int memberId = Integer.parseInt(req.getParameter("memberId"));
+
+		int articleId = articleService.addArticle(title, body, memberId, boardId);
+		
+		req.setAttribute("articleId", articleId);
+
+		return "usr/article/writeResult";
+	}
+
 }
+
