@@ -18,8 +18,12 @@
 	<div>
 		번호 :
 		<%=article.id%>
+		<br /> 조회수 :
+		<%=article.hitsCount%>
 		<br /> 작성일 :
 		<%=article.regDate%>
+		<br /> 수정일 :
+		<%=article.updateDate%>
 		<br /> 작성자 :
 		<%=article.extra__writer%>
 		<br /> 제목 :

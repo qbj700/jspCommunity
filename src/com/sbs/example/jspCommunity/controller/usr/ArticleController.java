@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Article;
+import com.sbs.example.jspCommunity.dto.Board;
 import com.sbs.example.jspCommunity.service.ArticleService;
 
 public class ArticleController {
@@ -18,8 +19,12 @@ public class ArticleController {
 
 	public String showList(HttpServletRequest req, HttpServletResponse resp) {
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
+
+		Board board = articleService.getBoardByBoardId(boardId);
+		String boardName = board.name;
 		List<Article> articles = articleService.getForPrintArticlesByBoardId(boardId);
 
+		req.setAttribute("boardName", boardName);
 		req.setAttribute("articles", articles);
 
 		return "usr/article/list";
@@ -44,7 +49,7 @@ public class ArticleController {
 
 		req.setAttribute("articleId", articleId);
 
-		return "usr/article/doWrite";
+		return "usr/article/write";
 	}
 
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
@@ -74,7 +79,7 @@ public class ArticleController {
 
 		req.setAttribute("message", message);
 
-		return "usr/article/doModify";
+		return "usr/article/modify";
 	}
 
 	public String doDelete(HttpServletRequest req, HttpServletResponse resp) {
@@ -101,8 +106,8 @@ public class ArticleController {
 		}
 
 		req.setAttribute("message", message);
-		
-		return "usr/article/doDelete";
+
+		return "usr/article/delete";
 	}
 
 }

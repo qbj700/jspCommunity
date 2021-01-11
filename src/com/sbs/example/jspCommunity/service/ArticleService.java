@@ -5,6 +5,7 @@ import java.util.List;
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dao.ArticleDao;
 import com.sbs.example.jspCommunity.dto.Article;
+import com.sbs.example.jspCommunity.dto.Board;
 
 public class ArticleService {
 	private ArticleDao articleDao;
@@ -37,7 +38,11 @@ public class ArticleService {
 
 	public void delete(int id) {
 		articleDao.delete(id);
-		
+
+	}
+
+	public Board getBoardByBoardId(int boardId) {
+		return articleDao.getBoardByBoardId(boardId);
 	};
 
 }
