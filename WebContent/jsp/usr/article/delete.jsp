@@ -4,7 +4,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.sbs.example.jspCommunity.dto.Article"%>
 <%
-	String message = (String) request.getAttribute("message");
+	int id = (int) request.getAttribute("id");
 %>
 <!doctype html>
 <html lang="ko">
@@ -16,7 +16,7 @@
 	<h1>게시물 삭제</h1>
 
 	<div>
-		<h2><%=message %></h2>
+		<h2><%=id %>번 게시물이 삭제 되었습니다.</h2>
 	</div>
 </body>
 </html>

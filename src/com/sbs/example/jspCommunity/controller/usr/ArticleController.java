@@ -108,30 +108,24 @@ public class ArticleController {
 		int id = Integer.parseInt(req.getParameter("id"));
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 
-		String message = "";
-
 		Article article = articleService.getArticleById(id);
 
 		if (article == null) {
-			message = id + "번 게시물은 존재하지 않습니다.";
+			req.setAttribute("alertMsg", id + "번 게시물은 존재하지 않습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
 		}
 
-		if (article != null) {
-			if (article.memberId != memberId) {
-				message = "삭제할 권한이 없습니다.";
-			}
-
-			if (article.memberId == memberId) {
-				articleService.delete(id);
-				message = id + "번 게시물이 삭제되었습니다.";
-			}
+		if (article.memberId != memberId) {
+			req.setAttribute("alertMsg", "삭제할 권한이 존재하지 않습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
 		}
-
-		req.setAttribute("message", message);
+		
+		articleService.delete(id);
+		req.setAttribute("id", id);
 
 		return "usr/article/delete";
 	}
-
-	
 
 }
