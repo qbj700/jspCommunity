@@ -49,6 +49,10 @@ public class ArticleDao {
 
 		Map<String, Object> articleMap = MysqlUtil.selectRow(sql);
 
+		if ( articleMap.isEmpty()) {
+			return null;
+		}
+		
 		return new Article(articleMap);
 	}
 
