@@ -59,15 +59,47 @@ public class DispatcherServlet extends HttpServlet {
 			if (actionMethodName.equals("write")) {
 				jspPath = articleController.doWrite(req, resp);
 			}
-			if (actionMethodName.equals("doWrite")) {
-				jspPath = articleController.write(req, resp);
-			}
 			if (actionMethodName.equals("modify")) {
 				jspPath = articleController.doModify(req, resp);
 			}
 			if (actionMethodName.equals("delete")) {
 				jspPath = articleController.doDelete(req, resp);
 			}
+		}
+
+		MysqlUtil.closeConnection();
+
+		RequestDispatcher rd = req.getRequestDispatcher("/jsp/" + jspPath + ".jsp");
+		rd.forward(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
+
+		String requestUri = req.getRequestURI();
+		String[] requestUriBits = requestUri.split("/");
+
+		if (requestUriBits.length < 5) {
+			resp.getWriter().append("올바른 요청이 아닙니다.");
+			return;
+		}
+
+		String controllerName = requestUriBits[3];
+		String actionMethodName = requestUriBits[4];
+
+		MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "jspCommunity");
+
+		String jspPath = null;
+
+		if (controllerName.equals("article")) {
+			ArticleController articleController = Container.articleController;
+
+			if (actionMethodName.equals("doWrite")) {
+				jspPath = articleController.write(req, resp);
+			}
+
 		}
 
 		MysqlUtil.closeConnection();

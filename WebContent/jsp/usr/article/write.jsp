@@ -17,7 +17,7 @@
 	<h1>게시물 등록</h1>
 	
 	<div>
-		<form action="/jspCommunity/usr/article/doWrite" target="_blank">
+		<form action="/jspCommunity/usr/article/doWrite" method="POST" target="_blank">
 			<input type="hidden" name="boardId" value="<%=boardId %>">
 			<hr>
 			<input type="hidden" name="memberId" value="<%=memberId %>">
