@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.Map"%>
 <%@ page import="com.sbs.example.jspCommunity.dto.Article"%>
 <%
 	Article article = (Article) request.getAttribute("article");
@@ -9,10 +8,15 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<title>게시물 상세</title>
+<title><%=article.id %>번 게시물 상세페이지</title>
 </head>
 <body>
-	<h1>게시물 상세</h1>
+	<h1><%=article.id %>번 게시물 상세페이지</h1>
+	
+	<div>
+		<a href="modify?id=<%=article.id%>&memberId=<%=article.memberId%>"><button type="button" >게시물 수정</button></a>
+		<a href="delete?id=<%=article.id%>&memberId=<%=article.memberId%>"><button type="button" >게시물 삭제</button></a>
+	</div>
 	
 	<div>
 		번호 :

@@ -85,18 +85,18 @@ public class ArticleDao {
 		return new Article(articleMap);
 	}
 
-	public void modify(String title, String body, int id) {
+	public void modify(Map<String, Object> args) {
 		SecSql sql = new SecSql();
 
 		sql.append("UPDATE article");
 		sql.append("SET updateDate = NOW(),");
-		if (title != null) {
-			sql.append("title = ?,", title);
+		if (args.get("title") != null) {
+			sql.append("title = ?,", args.get("title"));
 		}
-		if (body != null) {
-			sql.append("body = ?", body);
+		if (args.get("body") != null) {
+			sql.append("body = ?", args.get("body"));
 		}
-		sql.append("WHERE id = ?", id);
+		sql.append("WHERE id = ?", args.get("id"));
 
 		MysqlUtil.update(sql);
 	}

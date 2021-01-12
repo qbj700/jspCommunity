@@ -75,7 +75,7 @@ public class ArticleController {
 		return "common/redirect";
 	}
 
-	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
+	public String showModify(HttpServletRequest req, HttpServletResponse resp) {
 		int id = Integer.parseInt(req.getParameter("id"));
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 
@@ -93,21 +93,26 @@ public class ArticleController {
 			return "common/redirect";
 		}
 		
-		req.setAttribute("id", id);
+		req.setAttribute("article", article);
 
 		return "usr/article/modify";
 	}
 	
-	public String modify(HttpServletRequest req, HttpServletResponse resp) {
+	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int id = Integer.parseInt(req.getParameter("id"));
 		
-		articleService.modify(title, body, id);
-		req.setAttribute("id", id);
+		Map<String, Object> writeArgs = new HashMap<>();
+		writeArgs.put("id", id);
+		writeArgs.put("title", title);
+		writeArgs.put("body", body);
 		
+		articleService.modify(writeArgs);
 		
-		return "usr/article/modifyResult";
+		req.setAttribute("alertMsg", id + "번 게시물이 수정되었습니다.");
+		req.setAttribute("replaceUrl", String.format("detail?id=%d", id));
+		return "common/redirect";
 	}
 
 	public String doDelete(HttpServletRequest req, HttpServletResponse resp) {
@@ -129,9 +134,10 @@ public class ArticleController {
 		}
 		
 		articleService.delete(id);
-		req.setAttribute("id", id);
 
-		return "usr/article/delete";
+		req.setAttribute("alertMsg", id + "번 게시물이 삭제되었습니다.");
+		req.setAttribute("replaceUrl", String.format("list?boardId=%d", article.boardId));
+		return "common/redirect";
 	}
 
 }

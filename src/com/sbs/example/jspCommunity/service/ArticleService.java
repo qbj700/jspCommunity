@@ -24,8 +24,8 @@ public class ArticleService {
 		return articleDao.getForPrintArticleById(id);
 	}
 
-	public int write(Map<String, Object> Args) {
-		return articleDao.write(Args);
+	public int write(Map<String, Object> args) {
+		return articleDao.write(args);
 
 	}
 
@@ -33,8 +33,8 @@ public class ArticleService {
 		return articleDao.getArticleById(id);
 	}
 
-	public void modify(String title, String body, int id) {
-		articleDao.modify(title, body, id);
+	public void modify(Map<String, Object> args) {
+		articleDao.modify(args);
 	}
 
 	public void delete(int id) {
