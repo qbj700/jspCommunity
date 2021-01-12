@@ -1,6 +1,7 @@
 package com.sbs.example.jspCommunity.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dao.ArticleDao;
@@ -23,8 +24,8 @@ public class ArticleService {
 		return articleDao.getForPrintArticleById(id);
 	}
 
-	public int addArticle(String title, String body, int memberId, int boardId) {
-		return articleDao.addArticle(title, body, memberId, boardId);
+	public int write(Map<String, Object> Args) {
+		return articleDao.write(Args);
 
 	}
 

@@ -1,6 +1,8 @@
 package com.sbs.example.jspCommunity.controller.usr;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,10 +23,9 @@ public class ArticleController {
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 
 		Board board = articleService.getBoardByBoardId(boardId);
-		String boardName = board.name;
 		List<Article> articles = articleService.getForPrintArticlesByBoardId(boardId);
 
-		req.setAttribute("boardName", boardName);
+		req.setAttribute("board", board);
 		req.setAttribute("articles", articles);
 
 		return "usr/article/list";
@@ -45,28 +46,33 @@ public class ArticleController {
 		return "usr/article/detail";
 	}
 
-	public String doWrite(HttpServletRequest req, HttpServletResponse resp) {
+	public String showWrite(HttpServletRequest req, HttpServletResponse resp) {
 
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
-		int memberId = Integer.parseInt(req.getParameter("memberId"));
 
-		req.setAttribute("boardId", boardId);
-		req.setAttribute("memberId", memberId);
+		Board board = articleService.getBoardByBoardId(boardId);
+		req.setAttribute("board", board);
 
 		return "usr/article/write";
 	}
 	
-	public String write(HttpServletRequest req, HttpServletResponse resp) {
+	public String doWrite(HttpServletRequest req, HttpServletResponse resp) {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 
-		int articleId = articleService.addArticle(title, body, memberId, boardId);
-
-		req.setAttribute("articleId", articleId);
-
-		return "usr/article/writeResult";
+		Map<String, Object> writeArgs = new HashMap<>();
+		writeArgs.put("memberId", memberId);
+		writeArgs.put("boardId", boardId);
+		writeArgs.put("title", title);
+		writeArgs.put("body", body);
+		
+		int newArticleId = articleService.write(writeArgs);
+		
+		req.setAttribute("alertMsg", newArticleId + "번 게시물이 생성되었습니다.");
+		req.setAttribute("replaceUrl", String.format("detail?id=%d", newArticleId));
+		return "common/redirect";
 	}
 
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {

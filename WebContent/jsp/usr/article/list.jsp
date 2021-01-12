@@ -1,26 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.Map"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.sbs.example.jspCommunity.dto.Article"%>
+<%@ page import="com.sbs.example.jspCommunity.dto.Board"%>
 <%
-	String boardName = (String) request.getAttribute("boardName");
-List<Article> articles = (List<Article>) request.getAttribute("articles");
+	Board board = (Board) request.getAttribute("board");
+	List<Article> articles = (List<Article>) request.getAttribute("articles");
 %>
 <!doctype html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<title><%=boardName%> 게시판 게시물 리스트</title>
-<link href="<%=request.getContextPath()%>/resource/static/common.css" rel="stylesheet"></script>
+<title><%=board.name%> 게시판 게시물 리스트</title>
+<link href="/jspCommunity/resource/static/common.css" rel="stylesheet"></script>
 </head>
 
 <body>
-	<h1><%=boardName%>
-		게시판 게시물 리스트
-		
-		<%=request.getContextPath()%>
-	</h1>
+	<h1><%=board.name%> 게시판 게시물 리스트</h1>
+	
+	<div>
+		<a href="write?boardId=<%=request.getParameter("boardId")%>">게시물 작성</a>
+	</div>
+	
 	<%
 		for (Article article : articles) {
 	%>
@@ -32,9 +33,7 @@ List<Article> articles = (List<Article>) request.getAttribute("articles");
 		<br /> 작성자 :
 		<%=article.extra__writer%>
 		<br /> 제목 :
-		<%=article.title%>
-		<br /> 내용 :
-		<%=article.body%>
+		<a href="detail?id=<%=article.id%>"><%=article.title%></a>
 		<hr />
 	</div>
 	<%
