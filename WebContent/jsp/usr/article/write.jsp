@@ -8,14 +8,14 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<title><%=board.name %> 게시판 게시물 등록</title>
+<title><%=board.getName() %> 게시판 게시물 등록</title>
 </head>
 <body>
-	<h1><%=board.name %> 게시판 게시물 등록</h1>
+	<h1><%=board.getName() %> 게시판 게시물 등록</h1>
 	
 	<div>
 		<form action="writeResult" method="POST" >
-			<input type="hidden" name="boardId" value="<%=board.id %>">
+			<input type="hidden" name="boardId" value="<%=board.getId() %>">
 			<input type="hidden" name="memberId" value="1">
 			<hr>
 			<input type="text" name="title" placeholder="제목을 입력해주세요." maxlength="50">

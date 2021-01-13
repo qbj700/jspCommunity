@@ -8,14 +8,14 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<title><%=article.id %>번 게시물 수정페이지</title>
+<title><%=article.getId() %>번 게시물 수정페이지</title>
 </head>
 <body>
-	<h1><%=article.id %>번 게시물 수정페이지</h1>
+	<h1><%=article.getId() %>번 게시물 수정페이지</h1>
 
 	<div>
 		<form action="modifyResult" method="POST">
-			<input type="hidden" name="id" value="<%=article.id %>">
+			<input type="hidden" name="id" value="<%=article.getId() %>">
 			<hr>
 			<input type="text" name="title" placeholder="제목을 입력해주세요." maxlength="50">
 			<hr>

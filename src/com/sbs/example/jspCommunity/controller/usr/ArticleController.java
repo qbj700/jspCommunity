@@ -87,7 +87,7 @@ public class ArticleController {
 			return "common/redirect";
 		}
 
-		if (article.memberId != memberId) {
+		if (article.getMemberId() != memberId) {
 			req.setAttribute("alertMsg", "수정할 권한이 존재하지 않습니다.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
@@ -127,7 +127,7 @@ public class ArticleController {
 			return "common/redirect";
 		}
 
-		if (article.memberId != memberId) {
+		if (article.getMemberId() != memberId) {
 			req.setAttribute("alertMsg", "삭제할 권한이 존재하지 않습니다.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
@@ -136,7 +136,7 @@ public class ArticleController {
 		articleService.delete(id);
 
 		req.setAttribute("alertMsg", id + "번 게시물이 삭제되었습니다.");
-		req.setAttribute("replaceUrl", String.format("list?boardId=%d", article.boardId));
+		req.setAttribute("replaceUrl", String.format("list?boardId=%d", article.getBoardId()));
 		return "common/redirect";
 	}
 

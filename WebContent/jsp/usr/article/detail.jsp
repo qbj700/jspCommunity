@@ -8,37 +8,37 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<title><%=article.id %>번 게시물 상세페이지</title>
+<title><%=article.getId() %>번 게시물 상세페이지</title>
 </head>
 <body>
-	<h1><%=article.id %>번 게시물 상세페이지</h1>
+	<h1><%=article.getId() %>번 게시물 상세페이지</h1>
 	
 	<div>
-		<a href="modify?id=<%=article.id%>&memberId=<%=article.memberId%>"><button type="button" >게시물 수정</button></a>
-		<a href="delete?id=<%=article.id%>&memberId=<%=article.memberId%>"><button type="button" >게시물 삭제</button></a>
+		<a href="modify?id=<%=article.getId()%>&memberId=<%=article.getMemberId()%>"><button type="button" >게시물 수정</button></a>
+		<a href="delete?id=<%=article.getId()%>&memberId=<%=article.getMemberId()%>"><button type="button" >게시물 삭제</button></a>
 	</div>
 	
 	<div>
 		번호 :
-		<%=article.id%>
+		<%=article.getId()%>
 		<br /> 조회수 :
-		<%=article.hitsCount%>
+		<%=article.getHitsCount()%>
 		<br /> 작성일 :
-		<%=article.regDate%>
+		<%=article.getRegDate()%>
 		<br /> 수정일 :
-		<%=article.updateDate%>
+		<%=article.getUpdateDate()%>
 		<br /> 작성자 :
-		<%=article.extra__writer%>
+		<%=article.getExtra__writer()%>
 		<br /> 제목 :
-		<%=article.title%>
+		<%=article.getTitle()%>
 		<br /> 내용 :
-		<%=article.body%>
+		<%=article.getBody()%>
 	</div>
 	
 	<hr />
 	
 	<div>
-		<a href="list?boardId=<%=article.boardId%>">리스트로 이동</a>
+		<a href="list?boardId=<%=article.getBoardId()%>">리스트로 이동</a>
 	</div>
 </body>
 </html>

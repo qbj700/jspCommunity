@@ -11,12 +11,12 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<title><%=board.name%> 게시판 게시물 리스트</title>
+<title><%=board.getName()%> 게시판 게시물 리스트</title>
 <link href="/jspCommunity/resource/static/common.css" rel="stylesheet"></script>
 </head>
 
 <body>
-	<h1><%=board.name%> 게시판 게시물 리스트</h1>
+	<h1><%=board.getName()%> 게시판 게시물 리스트</h1>
 	
 	<div>
 		<a href="write?boardId=<%=request.getParameter("boardId")%>">게시물 작성</a>
@@ -27,13 +27,13 @@
 	%>
 	<div class="list">
 		번호 :
-		<%=article.id%>
+		<%=article.getId()%>
 		<br /> 작성일 :
-		<%=article.regDate%>
+		<%=article.getRegDate()%>
 		<br /> 작성자 :
-		<%=article.extra__writer%>
+		<%=article.getExtra__writer()%>
 		<br /> 제목 :
-		<a href="detail?id=<%=article.id%>"><%=article.title%></a>
+		<a href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></a>
 		<hr />
 	</div>
 	<%
