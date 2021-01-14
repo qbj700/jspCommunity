@@ -19,11 +19,11 @@
 	%>
 	<div>
 		번호 :
-		<%=member.id%>
+		<%=member.getId()%>
 		<br /> 이름 :
-		<%=member.name%>
+		<%=member.getName()%>
 		<br /> 닉네임 :
-		<%=member.nickname%>
+		<%=member.getNickname()%>
 		<hr />
 	</div>
 	<%
