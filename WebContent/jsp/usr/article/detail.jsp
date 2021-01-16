@@ -15,7 +15,7 @@
 	
 	<div>
 		<a href="modify?id=<%=article.getId()%>&memberId=<%=article.getMemberId()%>"><button type="button" >게시물 수정</button></a>
-		<a href="delete?id=<%=article.getId()%>&memberId=<%=article.getMemberId()%>"><button type="button" >게시물 삭제</button></a>
+		<a onclick="if ( confirm('정말 삭제하시겠습니까?') == false ) { return false; }"href="doDelete?id=<%=article.getId()%>&memberId=<%=article.getMemberId()%>"><button type="button" >게시물 삭제</button></a>
 	</div>
 	
 	<div>

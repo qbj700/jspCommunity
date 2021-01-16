@@ -62,7 +62,7 @@ public class DispatcherServlet extends HttpServlet {
 				jspPath = articleController.showModify(req, resp);
 			} else if (actionMethodName.equals("modifyResult")) {
 				jspPath = articleController.doModify(req, resp);
-			} else if (actionMethodName.equals("delete")) {
+			} else if (actionMethodName.equals("doDelete")) {
 				jspPath = articleController.doDelete(req, resp);
 			}
 
