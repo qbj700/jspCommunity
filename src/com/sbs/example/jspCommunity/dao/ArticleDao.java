@@ -49,10 +49,10 @@ public class ArticleDao {
 
 		Map<String, Object> articleMap = MysqlUtil.selectRow(sql);
 
-		if ( articleMap.isEmpty()) {
+		if (articleMap.isEmpty()) {
 			return null;
 		}
-		
+
 		return new Article(articleMap);
 	}
 
@@ -85,20 +85,30 @@ public class ArticleDao {
 		return new Article(articleMap);
 	}
 
-	public void modify(Map<String, Object> args) {
+	public int modify(Map<String, Object> args) {
 		SecSql sql = new SecSql();
 
 		sql.append("UPDATE article");
 		sql.append("SET updateDate = NOW(),");
+
+		boolean needToUpdate = false;
+
 		if (args.get("title") != null) {
+			needToUpdate = true;
 			sql.append("title = ?,", args.get("title"));
 		}
 		if (args.get("body") != null) {
+			needToUpdate = true;
 			sql.append("body = ?", args.get("body"));
 		}
+		
+		if ( needToUpdate == false ) {
+			return 0;
+		}
+		
 		sql.append("WHERE id = ?", args.get("id"));
-
-		MysqlUtil.update(sql);
+		
+		return MysqlUtil.update(sql);
 	}
 
 	public void delete(int id) {

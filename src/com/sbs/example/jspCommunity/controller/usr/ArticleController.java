@@ -99,9 +99,11 @@ public class ArticleController {
 	}
 	
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
+		int id = Integer.parseInt(req.getParameter("id"));
+		
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
-		int id = Integer.parseInt(req.getParameter("id"));
+		
 		
 		Map<String, Object> writeArgs = new HashMap<>();
 		writeArgs.put("id", id);

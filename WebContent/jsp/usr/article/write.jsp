@@ -14,7 +14,7 @@
 	<h1><%=board.getName() %> 게시판 게시물 등록</h1>
 	
 	<div>
-		<form action="writeResult" method="POST" >
+		<form action="doWrite" method="POST" >
 			<input type="hidden" name="boardId" value="<%=board.getId() %>">
 			<input type="hidden" name="memberId" value="1">
 			<hr>
