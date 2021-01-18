@@ -1,38 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ page import="com.sbs.example.jspCommunity.dto.Article"%>
-<%@ page import="com.sbs.example.jspCommunity.dto.Board"%>
-<%
-	Board board = (Board) request.getAttribute("board");
-List<Article> articles = (List<Article>) request.getAttribute("articles");
-String pageTitle = board.getName() + "게시판 게시물 리스트";
-%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="pageTitle" value="${board.name} 게시판 게시물 리스트"/>
 
 <%@ include file="../../part/head.jspf"%>
 
-<h1><%=pageTitle%>
-
-</h1>
+<h1> ${pageTitle } </h1>
 
 <div>
-	<a href="write?boardId=<%=request.getParameter("boardId")%>">게시물 작성</a>
+	<a href="write?boardId=${param.boardId}">게시물 작성</a>
 </div>
 
-<%
-	for (Article article : articles) {
-%>
-<div class="list">
-	번호 :
-	<%=article.getId()%>
-	<br /> 작성일 :
-	<%=article.getRegDate()%>
-	<br /> 작성자 :
-	<%=article.getExtra__writer()%>
-	<br /> 제목 : <a href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></a>
-	<hr />
-</div>
-<%
-	}
-%>
+
+<c:forEach var="article" items="${articles }">
+	<div class="list">
+		번호 :
+		${article.id}
+		<br /> 작성일 :
+		${article.regDate}
+		<br /> 작성자 :
+		${article.extra__writer}
+		<br /> 제목 : <a href="detail?id=${article.id}">${article.title}</a>
+		<hr />
+	</div>
+</c:forEach>
 <%@ include file="../../part/foot.jspf"%>
