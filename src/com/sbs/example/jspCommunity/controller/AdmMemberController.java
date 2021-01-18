@@ -9,10 +9,10 @@ import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Member;
 import com.sbs.example.jspCommunity.service.MemberService;
 
-public class UsrMemberController {
+public class AdmMemberController {
 	private MemberService memberService;
 
-	public UsrMemberController() {
+	public AdmMemberController() {
 		memberService = Container.memberService;
 	}
 
@@ -21,7 +21,7 @@ public class UsrMemberController {
 
 		req.setAttribute("members", members);
 
-		return "usr/member/list";
+		return "adm/member/list";
 	}
 
 }
