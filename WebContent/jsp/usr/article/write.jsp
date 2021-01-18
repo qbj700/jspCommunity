@@ -6,7 +6,7 @@
 
 <%@ include file="../../part/head.jspf"%>
 
-<h1> ${pageTitle }]</h1>
+<h1> ${pageTitle }</h1>
 
 <div>
 	<form action="doWrite" method="POST">
