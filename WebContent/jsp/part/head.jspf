@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -5,3 +8,17 @@
 <title>${pageTitle }</title>
 </head>
 <body>
+
+<div>
+	
+	<c:if test="${sessionScope.loginedMemberId > 0}">
+		<a href="../article/write?boardId=1">공지사항 글쓰기</a>
+		<a href="../member/logout" onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }">로그아웃</a>
+	</c:if>
+	
+	<c:if test="${sessionScope.loginedMemberId == null}">
+		<a href="../member/login">로그인</a>
+		<a href="../member/join">회원가입</a>
+	</c:if>
+	
+</div>

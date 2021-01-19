@@ -67,6 +67,15 @@ public class UsrMemberController {
 		return "usr/member/login";
 	}
 
+	public String doLogout(HttpServletRequest req, HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+		session.removeAttribute("loginedMemberId");
+		
+		req.setAttribute("alertMsg", "로그아웃 되었습니다.");
+		req.setAttribute("replaceUrl", "../home/main");
+		return "common/redirect";
+	}
+
 	public String doLogin(HttpServletRequest req, HttpServletResponse resp) {
 		String loginId = req.getParameter("loginId");
 		String loginPw = req.getParameter("loginPw");
@@ -84,7 +93,7 @@ public class UsrMemberController {
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
+
 		HttpSession session = req.getSession();
 		session.setAttribute("loginedMemberId", member.getId());
 

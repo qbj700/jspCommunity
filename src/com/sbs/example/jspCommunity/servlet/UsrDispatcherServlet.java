@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.controller.UsrArticleController;
+import com.sbs.example.jspCommunity.controller.UsrHomeController;
 import com.sbs.example.jspCommunity.controller.UsrMemberController;
 
 @WebServlet("/usr/*")
@@ -14,7 +15,12 @@ public class UsrDispatcherServlet extends DispatcherServlet {
 	protected String doAction(HttpServletRequest req, HttpServletResponse resp, String controllerName, String actionMethodName) {
 		String jspPath = null;
 
-		if (controllerName.equals("member")) {
+		if (controllerName.equals("home")) {
+			UsrHomeController homeController = Container.usrHomeController;
+			if (actionMethodName.equals("main")) {
+				jspPath = homeController.showMain(req, resp);
+			}
+		} else if (controllerName.equals("member")) {
 			UsrMemberController memberController = Container.usrMemberController;
 
 			if (actionMethodName.equals("list")) {
@@ -27,6 +33,8 @@ public class UsrDispatcherServlet extends DispatcherServlet {
 				jspPath = memberController.showLogin(req, resp);
 			} else if (actionMethodName.equals("doLogin")) {
 				jspPath = memberController.doLogin(req, resp);
+			}else if (actionMethodName.equals("logout")) {
+				jspPath = memberController.doLogout(req, resp);
 			}
 		} else if (controllerName.equals("article")) {
 			UsrArticleController articleController = Container.usrArticleController;
