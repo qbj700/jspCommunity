@@ -7,33 +7,38 @@ CREATE TABLE `member` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
+    loginId CHAR(50) NOT NULL UNIQUE,
+    loginPw VARCHAR(200) NOT NULL,
     `name` CHAR(50) NOT NULL,
     `nickname` CHAR(50) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
-    loginId CHAR(50) NOT NULL UNIQUE,
-    loginPw VARCHAR(200) NOT NULL,
-    adminLevel TINYINT(1) UNSIGNED NOT NULL DEFAULT 2 COMMENT '0=탈퇴/1=로그인정지/2=일반/3=인증/4=관리자'
+    cellphoneNo CHAR(20) NOT NULL,
+    authLevel TINYINT(1) UNSIGNED NOT NULL DEFAULT 2 COMMENT '0=탈퇴/1=로그인정지/2=일반/3=인증/4=관리자'
 );
 
 # 회원1 생성
 INSERT INTO `member`
 SET regDate = NOW(),
 updateDate = NOW(),
+loginId = "user1",
+loginPw = "user1",
 `name` = "김민수",
 `nickname` = "강바람",
 `email` = "qbj700@gmail.com",
-loginId = "user1",
-loginPw = "user1";
+cellphoneNo = "01012341234";
+
 
 # 회원2 생성
 INSERT INTO `member`
 SET regDate = NOW(),
 updateDate = NOW(),
+loginId = "user2",
+loginPw = "user2",
 `name` = "김미소",
 `nickname` = "미소천사",
 `email` = "qbj700@gmail.com",
-loginId = "user2",
-loginPw = "user2";
+cellphoneNo = "01011112222";
+
 
 # 게시판 테이블 생성
 CREATE TABLE board (
@@ -117,6 +122,3 @@ memberId = 2,
 boardId = 1,
 title = '제목5',
 `body` = '내용5';
-
-# adminLevel 칼럼을 authLevel로 변경
-ALTER TABLE `member` CHANGE `adminLevel` `authLevel` TINYINT(1) UNSIGNED DEFAULT 2 NOT NULL COMMENT '0=탈퇴/1=로그인정지/2=일반/3=인증/4=관리자'; 
