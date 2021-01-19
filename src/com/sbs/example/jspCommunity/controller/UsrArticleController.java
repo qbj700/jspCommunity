@@ -76,7 +76,7 @@ public class UsrArticleController {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
-		int memberId = Integer.parseInt(req.getParameter("memberId"));
+		int memberId = (int)session.getAttribute("loginedMemberId");
 
 		Map<String, Object> writeArgs = new HashMap<>();
 		writeArgs.put("memberId", memberId);
@@ -101,7 +101,7 @@ public class UsrArticleController {
 		}
 
 		int id = Integer.parseInt(req.getParameter("id"));
-		int memberId = Integer.parseInt(req.getParameter("memberId"));
+		int loginedMemberId = (int)session.getAttribute("loginedMemberId");
 
 		Article article = articleService.getArticleById(id);
 
@@ -111,8 +111,8 @@ public class UsrArticleController {
 			return "common/redirect";
 		}
 
-		if (article.getMemberId() != memberId) {
-			req.setAttribute("alertMsg", "수정할 권한이 존재하지 않습니다.");
+		if (article.getMemberId() != loginedMemberId) {
+			req.setAttribute("alertMsg", id + "번 게시물에 대한 권한이 존재하지 않습니다.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}
@@ -132,6 +132,21 @@ public class UsrArticleController {
 		}
 
 		int id = Integer.parseInt(req.getParameter("id"));
+		int loginedMemberId = (int)session.getAttribute("loginedMemberId");
+
+		Article article = articleService.getArticleById(id);
+		
+		if (article == null) {
+			req.setAttribute("alertMsg", id + "번 게시물은 존재하지 않습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
+		if (article.getMemberId() != loginedMemberId) {
+			req.setAttribute("alertMsg", id + "번 게시물에 대한 권한이 존재하지 않습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
 
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
@@ -158,7 +173,7 @@ public class UsrArticleController {
 		}
 
 		int id = Integer.parseInt(req.getParameter("id"));
-		int memberId = Integer.parseInt(req.getParameter("memberId"));
+		int loginedMemberId = (int)session.getAttribute("loginedMemberId");
 
 		Article article = articleService.getArticleById(id);
 
@@ -168,8 +183,8 @@ public class UsrArticleController {
 			return "common/redirect";
 		}
 
-		if (article.getMemberId() != memberId) {
-			req.setAttribute("alertMsg", "삭제할 권한이 존재하지 않습니다.");
+		if (article.getMemberId() != loginedMemberId) {
+			req.setAttribute("alertMsg", id + "번 게시물에 대한 권한이 존재하지 않습니다.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}

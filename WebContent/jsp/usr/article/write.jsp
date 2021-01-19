@@ -11,7 +11,6 @@
 <div>
 	<form action="doWrite" method="POST">
 		<input type="hidden" name="boardId" value="${board.id}">
-		<input type="hidden" name="memberId" value="1">
 		<hr>
 		<input type="text" name="title" placeholder="제목을 입력해주세요."
 			maxlength="50">
