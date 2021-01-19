@@ -10,6 +10,7 @@
 <body>
 
 <div>
+	<a href="../article/list?boardId=1">공지사항 게시물 리스트</a>
 	
 	<c:if test="${sessionScope.loginedMemberId > 0}">
 		<a href="../article/write?boardId=1">공지사항 글쓰기</a>
