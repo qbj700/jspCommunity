@@ -6,25 +6,91 @@
 <head>
 <meta charset="UTF-8" />
 <title>${pageTitle }</title>
+
+<!-- 반응형 필수 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 제이쿼리 불러오기 -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/static/common.css" />
+<script src="${pageContext.request.contextPath}/static/common.js" defer></script>
 </head>
 <body>
 
-	<c:if test="${sessionScope.loginedMemberId > 0}">
-		<div>
-			로그인된 회원의 번호 : ${sessionScope.loginedMemberId}
+	<!-- 모바일 탑바 시작 -->
+	<header class="mobile-top-bar con-min-width visible-sm-down flex">
+		<!-- 모바일 사이드바 시작 -->
+		<div class=" flex-1-0-0 flex ">
+			<div class="mobile-top-bar__btn-toggle-side-bar flex-as-c">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
 		</div>
-	</c:if>
-	<a href="../article/list?boardId=1">공지사항 게시물 리스트</a>
+		<!-- 모바일 사이드바 끝 -->
+		<!-- 모바일 로고바 시작 -->
 
-	<c:if test="${sessionScope.loginedMemberId > 0}">
-		<a href="../article/write?boardId=1">공지사항 글쓰기</a>
-		<a href="../member/logout"
-			onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }">로그아웃</a>
-	</c:if>
+		<div class="mobile-logo-bar con-min-width height-100p flex">
+			<div class="con flex-as-c">
+				<a href="../home/main" class="mobile-logo"> <span
+					class="logo__text">MODUMOA .</span> <i class="fas fa-asterisk"></i>
+				</a>
+			</div>
+		</div>
 
-	<c:if test="${sessionScope.loginedMemberId == null}">
-		<a href="../member/login">로그인</a>
-		<a href="../member/join">회원가입</a>
-	</c:if>
+		<!-- 모바일 로고바 끝 -->
+		<div class=" flex-1-0-0"></div>
+	</header>
+	<!-- 모바일 탑바 끝 -->
+	<!-- 모바일 사이드바 시작 -->
+	<aside class="mobile-side-bar visible-sm-down"></aside>
+	<!-- 모바일 사이드바 끝 -->
 
-	</div>
+
+	<!-- 탑바 시작 -->
+	<header class="top-bar con-min-width visible-md-up">
+		<div class="con flex height-100p">
+			<!-- 로고 시작 -->
+			<div class="top-bar__left flex flex-ai-c">
+				<div class="logo">
+					<a href="../home/main" class="logo-box"> <span>MODUMOA .</span>
+						<i class="fas fa-asterisk"></i>
+					</a>
+				</div>
+			</div>
+			<div class="flex-1-0-0"></div>
+			<!-- 로고 끝 -->
+			<!-- 로그인 메뉴 시작 -->
+			<c:if test="${sessionScope.loginedMemberId == null}">
+				<div class="top-bar__sign-menu flex flex-as-c visible-md-up">
+					<div class="">
+						<a href="../member/login"><i class="far fa-user"></i> 로그인</a>
+					</div>
+					<div class="">
+						<a href="../member/join"><i class="fas fa-sign-in-alt"></i>
+							회원가입</a>
+					</div>
+				</div>
+			</c:if>
+			<c:if test="${sessionScope.loginedMemberId > 0}">
+				<div class="top-bar__sign-menu flex flex-as-c visible-md-up">
+					<div class="">
+						<a href="../article/write?boardId=1"><i class="fas fa-plus"></i>
+							공지사항 글쓰기</a>
+					</div>
+					<div class="">
+						<a href="../member/logout"
+							onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }"><i
+							class="fas fa-sign-out-alt"></i> 로그아웃</a>
+					</div>
+				</div>
+			</c:if>
+			<!-- 로그인 메뉴 끝 -->
+		</div>
+	</header>
+	<!-- 탑바 끝 -->
