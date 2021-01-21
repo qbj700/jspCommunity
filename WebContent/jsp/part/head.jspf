@@ -21,7 +21,7 @@
 <script src="${pageContext.request.contextPath}/static/common.js" defer></script>
 </head>
 <body>
-
+<div class="body-content">
 	<!-- 모바일 탑바 시작 -->
 	<header class="mobile-top-bar con-min-width visible-sm-down flex">
 		<!-- 모바일 사이드바 시작 -->
@@ -94,3 +94,6 @@
 		</div>
 	</header>
 	<!-- 탑바 끝 -->
+
+	<main class="con-min-width flex-1-0-0">
+		<div class="con">

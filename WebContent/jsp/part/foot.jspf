@@ -1,3 +1,24 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+	</div>
+</main>
+  <!-- 하단바 시작 -->
+  <footer class="footer con-min-width">
+    <div class="con copy-info flex height-100p">
+      <div class="foot-logo">
+        <a href="#" class="logo-box">
+          <span>MODUMOA .</span>
+          <i class="fas fa-asterisk"></i>
+        </a>
+      </div>
+      <div class="copyright ">© MODUMOA All rights reserved</div>            <div class="other-site-favicons flex">
+        <a href="https://github.com/qbj700" target="_blank"><i class="fab fa-github-square"></i></a>
+        <a href="https://ssg.modify.kr" target="_blank"><i class="fab fa-blogger"></i></a>
+      </div>
+    </div>
+  </footer>
+  <!-- 하단바 끝 -->
+</div>
 </body>
 </html>

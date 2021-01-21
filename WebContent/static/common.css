@@ -91,8 +91,8 @@ a {
   background-color:pink;
 }
 
-.bd-green {
-  border:10px solid green;
+.bg-green {
+  background-color:green;
 }
 
 .bg-red {
@@ -154,7 +154,7 @@ a {
 }
 /* 커스텀 시작 */
 :root {
-  --site-width:1200px;
+  --site-width:1044px;
 }
 .con {
   max-width: var(--site-width);
@@ -268,13 +268,95 @@ a {
 /* 탑바 끝 */
 
 /* 모바일 메인 페이지 시작 */
-
 /* 모바일 메인 페이지 끝 */
 
 /* 메인 페이지 시작 */
-
-
 /* 메인 페이지 끝 */
+/* 하단바 시작 */
+.body-content {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.footer {
+  width:100%;
+  height:150px;
+  background-color:#dbddf1;
+  padding-top:20px;
+  padding-bottom:20px;
+  box-sizing:border-box;
+  color:#7b858e;
+}
+.foot-logo {
+  font-size:1.8rem;
+  color:#7b858e;
+}
+.copy-info {
+  flex-direction:column;
+  justify-content:center;
+  align-items:start;
+}
+.copyright {
+  margin-top:10px;
+  font-size:12px;
+}
+.other-site-favicons {
+  width:100%;
+  justify-content:flex-end;
+}
+.other-site-favicons > a > i{
+  font-size:2rem;
+  margin:0 10px 0 10px;
+  color:#7b858e;
+}
+
+/* 하단바 끝 */
+/* 로그인 화면 시작 */
+.login-page {
+  width:100%;
+  min-height:100vh;
+  background-color:#f3f5f7;
+}
+
+.login-page__frame {
+  width:450px;
+  min-height:700px;
+  padding:40px 40px;
+  box-sizing:border-box;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  background-color: #fff;
+}
+.frame__content-1 {
+  min-height:660px;
+}
+.login-logo-box {
+  font-size:1.8rem;
+  width:100%;
+  text-align:center;
+  padding-top:40px;
+  padding-bottom:40px;
+  margin-bottom:40px;
+  color:skyblue;
+  box-sizing:border-box;
+}
+
+.login-form > form > div {
+  margin-top:20px;
+}
+.login-submit-box {
+  width:100%;
+}
+.login-submit {
+  width:200px;
+  margin-right:auto;
+  margin-left:auto;
+  display:block;
+  box-sizing:border-box;
+  border: 2px solid skyblue;
+  border-radius:7px;
+}
+/* 로그인 화면 끝 */
 /* 커스텀 끝 */
 
 
