@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sbs.example.jspCommunity.container.Container;
-import com.sbs.example.jspCommunity.dto.Board;
 import com.sbs.example.jspCommunity.dto.Member;
 import com.sbs.example.jspCommunity.service.MemberService;
+import com.sbs.example.jspCommunity.util.Util;
 
 public class UsrMemberController {
 	private MemberService memberService;
@@ -99,7 +99,7 @@ public class UsrMemberController {
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
+
 		session.removeAttribute("loginedMemberId");
 
 		req.setAttribute("alertMsg", "로그아웃 되었습니다.");
@@ -140,4 +140,29 @@ public class UsrMemberController {
 		return "common/redirect";
 	}
 
+	public String getLoginIdDup(HttpServletRequest req, HttpServletResponse resp) {
+		String loginId = req.getParameter("loginId");
+
+		Member member = memberService.getMemberByLoginId(loginId);
+
+		Map<String, Object> rs = new HashMap<>();
+
+		String resultCode = null;
+		String msg = null;
+
+		if (member != null) {
+			resultCode = "F-1";
+			msg = "이미 사용중인 로그인아이디 입니다.";
+		} else {
+			resultCode = "S-1";
+			msg = "사용가능한 로그인아이디 입니다.";
+		}
+		rs.put("resultCode", resultCode);
+		rs.put("msg", msg);
+		rs.put("loginId", loginId);
+
+		req.setAttribute("data", Util.getJsonText(rs));
+		
+		return "common/pure";
+	}
 }
