@@ -84,7 +84,7 @@
 							공지사항 글쓰기</a>
 					</div>
 					<div class="">
-						<a href="../member/logout"
+						<a href="../member/doLogout"
 							onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }"><i
 							class="fas fa-sign-out-alt"></i> 로그아웃</a>
 					</div>
