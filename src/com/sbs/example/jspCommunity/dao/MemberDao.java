@@ -73,5 +73,17 @@ public class MemberDao {
 
 		return new Member(map);
 	}
+	
+	public boolean duplicateIdCheck(String loginId) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT M.*");
+		sql.append("FROM `member` AS M");
+		sql.append("WHERE loginId = ?", loginId);
+
+		Map<String, Object> map = MysqlUtil.selectRow(sql);
+
+		return map.isEmpty();
+	}
+
 
 }

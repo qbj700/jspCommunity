@@ -37,7 +37,9 @@ public class UsrMemberController {
 		String loginPw = req.getParameter("loginPw");
 		String name = req.getParameter("name");
 		String nickname = req.getParameter("nickname");
-		String email = req.getParameter("email");
+		String email1 = req.getParameter("email1");
+		String email2 = req.getParameter("email2");
+		String email = email1+ "@" + email2;
 		String cellphoneNo = req.getParameter("cellphoneNo");
 
 		Member oldMember = memberService.getMemberByLoginId(loginId);
@@ -102,7 +104,11 @@ public class UsrMemberController {
 		return "common/redirect";
 	}
 
-	public String getLoginIdDup(HttpServletRequest req, HttpServletResponse resp) {
+	public String showIdCheckForm(HttpServletRequest req, HttpServletResponse resp) {
+		return "usr/member/idCheckForm";
+	}
+
+	public String getIdCheck(HttpServletRequest req, HttpServletResponse resp) {
 		String loginId = req.getParameter("loginId");
 
 		Member member = memberService.getMemberByLoginId(loginId);
@@ -126,5 +132,6 @@ public class UsrMemberController {
 		req.setAttribute("data", Util.getJsonText(rs));
 		
 		return "common/pure";
+		
 	}
 }

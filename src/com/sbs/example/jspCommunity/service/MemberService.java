@@ -31,4 +31,8 @@ public class MemberService {
 		return memberDao.getMemberById(id);
 	}
 
+	public boolean duplicateIdCheck(String loginId) {
+		return memberDao.duplicateIdCheck(loginId);
+	}
+
 }

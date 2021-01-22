@@ -9,186 +9,139 @@
 <h1>${pageTitle }</h1>
 
 <div>
+	<style>
+table {
+	border: 3px solid skyblue;
+}
+
+td {
+	border: 1px solid skyblue
+}
+
+#title {
+	background-color: skyblue
+}
+</style>
 	<script>
-		let DoJoinForm__submited = false;
-		let DoJoinForm__checkedLoginId = "";
-		
-		// 로그인 아이디 중복체크
-		function DoJoinForm__checkLoginIdDup(el) {
-			const from = $(el).closest('form').get(0);
-			const loginId = from.loginId.value.trim();
-			
-			if (loginId.length == 0) {
-				alert('로그인 아이디를 입력해주세요.');
-				form.loginId.focus();
+	function checkValue()
+	{
+	  var form = document.userInfo;
 
-				return;
-			}
-			
-			$.get(
-				"getLoginIdDup",
-				{
-					loginId
-				},
-				function(data) {
-					if ( data.msg ) {
-						alert(data.msg);
-					}
-					if ( data.resultCode.substr(0, 2) == "S-" ) {
-						DoJoinForm__checkedLoginId = data.loginId;
-					}
-				},
-				"json"
-			);
-		}
-		
-		function DoJoinForm__submit(form) {
-			if (DoJoinForm__submited) {
-				alert('처리중입니다.');
-				return;
-			}
+	  if(!form.loginId.value.trim()){
+	    alert("아이디를 입력하세요.");
+	    return false;
+	  }
 
-			form.loginId.value = form.loginId.value.trim();
+	  if(form.idDuplication.value != "idCheck"){
+	    alert("아이디 중복체크를 해주세요.");
+	    return false;
+	  }
 
-			if (form.loginId.value.length == 0) {
-				alert('로그인 아이디를 입력해주세요.');
-				form.loginId.focus();
+	  if(!form.loginPw.value.trim()){
+	    alert("비밀번호를 입력하세요.");
+	    return false;
+	  }
 
-				return;
-			}
+	  // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+	  if(form.loginPw.value.trim() != form.loginPwConfirm.value.trim() ){
+	    alert("비밀번호를 동일하게 입력하세요.");
+	    return false;
+	  }    
 
-			if ( form.loginId.value != DoJoinForm__checkedLoginId ) {
-				alert('로그인 아이디 중복검사를 해주세요.');
-				form.btnLoginIdDupCheck.focus();
-				return false;
-			}
+	  if(!form.name.value.trim()){
+	    alert("이름을 입력하세요.");
+	    return false;
+	  }
 
-			form.loginPw.value = form.loginPw.value.trim();
+	 
+	  if(!form.email1.value.trim()){
+	    alert("메일 주소를 입력하세요.");
+	    return false;
+	  }
 
-			if (form.loginPw.value.length == 0) {
-				alert('비밀번호를 입력해주세요.');
-				form.loginPw.focus();
+	  if(!form.cellphoneNo.value.trim()){
+          alert("전화번호를 입력하세요.");
+          return false;
+      }
+      
+      if(isNaN(form.cellphoneNo.value.trim())){
+          alert("전화번호는 - 제외한 숫자만 입력해주세요.");
+          return false;
+      }
+	}
 
-				return;
-			}
+	// 취소 버튼 클릭시 첫화면으로 이동
+	function goFirstForm() {
+	  location.href="MainForm.do";
+	}    
 
-			form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
+	// 아이디 중복체크 화면open
+	function openIdChk(){
 
-			if (form.loginPwConfirm.value.length == 0) {
-				alert('비밀번호 확인을 입력해주세요.');
-				form.loginPwConfirm.focus();
+	  window.name = "parentForm";
+	  window.open("showIdCheckForm",
+	              "chkForm", "width=500, height=300, resizable = no, scrollbars = no");    
+	}
 
-				return;
-			}
-
-			if (form.loginPw.value != form.loginPwConfirm.value) {
-				alert('비밀번호가 일치하지 않습니다');
-				form.loginPwConfirm.focus();
-
-				return;
-			}
-
-			form.name.value = form.name.value.trim();
-
-			if (form.name.value.length == 0) {
-				alert('이름을 입력해주세요.');
-				form.name.focus();
-
-				return;
-			}
-
-			form.nickname.value = form.nickname.value.trim();
-
-			if (form.nickname.value.length == 0) {
-				alert('별명을 입력해주세요.');
-				form.nickname.focus();
-
-				return;
-			}
-
-			form.email.value = form.email.value.trim();
-
-			if (form.email.value.length == 0) {
-				alert('이메일을 입력해주세요.');
-				form.email.focus();
-
-				return;
-			}
-
-			form.cellphoneNo.value = form.cellphoneNo.value.trim();
-
-			if (form.cellphoneNo.value.length == 0) {
-				alert('전화번호를 입력해주세요.');
-				form.cellphoneNo.focus();
-
-				return;
-			}
-
-			form.submit();
-			DoJoinForm__submited = true;
-		}
+	// 아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
+	// 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때
+	// 다시 중복체크를 하도록 한다.
+	function inputIdChk(){
+	  document.userInfo.idDuplication.value ="idUncheck";
+	}
 	</script>
-	<form action="doJoin" method="POST"
-		onsubmit="DoJoinForm__submit(this); return false;">
-		<hr>
-		<div>로그인 아이디</div>
-		<div>
-			<input type="text" name="loginId" placeholder="아이디를 입력해주세요."
-				maxlength="50">
-				
-			<button onclick="DoJoinForm__checkLoginIdDup(this);"
-					name="btnLoginIdDupCheck" type="button">중복체크</button>
-		</div>
+	<form autocomplete="off" method="post" action="doJoin"
+		name="userInfo" onsubmit="return checkValue()">
+		<table>
+			<tr>
+				<td id="title">아이디</td>
+				<td><input type="text" name="loginId" maxlength="50"
+					onkeydown="inputIdChk()"> <input type="button" value="중복확인"
+					onclick="openIdChk()"> <input type="hidden"
+					name="idDuplication" value="idUncheck"></td>
+			</tr>
 
-		<hr>
-		<div>로그인 비밀번호</div>
-		<div>
-			<input type="password" name="loginPw" placeholder="비밀번호를 입력해주세요."
-				maxlength="50">
-		</div>
+			<tr>
+				<td id="title">비밀번호</td>
+				<td><input type="password" name="loginPw" maxlength="50">
+				</td>
+			</tr>
 
-		<hr>
-		<div>비밀번호 확인</div>
-		<div>
-			<input type="password" name="loginPwConfirm"
-				placeholder="비밀번호를 입력해주세요." maxlength="50">
-		</div>
+			<tr>
+				<td id="title">비밀번호 확인</td>
+				<td><input type="password" name="loginPwConfirm" maxlength="50">
+				</td>
+			</tr>
 
-		<hr>
-		<div>이름</div>
-		<div>
-			<input type="text" name="name" placeholder="이름을 입력해주세요."
-				maxlength="50">
-		</div>
+			<tr>
+				<td id="title">이름</td>
+				<td><input type="text" name="name" maxlength="50"></td>
+			</tr>
+			<tr>
+				<td id="title">별명</td>
+				<td><input type="text" name="nickname" maxlength="50">
+				</td>
+			</tr>
 
-		<hr>
-		<div>별명</div>
-		<div>
-			<input type="text" name="nickname" placeholder="별명을 입력해주세요."
-				maxlength="50">
-		</div>
-
-		<hr>
-		<div>이메일</div>
-		<div>
-			<input type="email" name="email" placeholder="이메일을 입력해주세요."
-				maxlength="100">
-		</div>
-
-		<hr>
-		<div>전화번호</div>
-		<div>
-			<input type="number" name="cellphoneNo" placeholder="전화번호를 입력해주세요."
-				maxlength="50">
-		</div>
-
-		<hr>
-		<div>가입</div>
-		<div>
-			<input type="submit" value="가입">
-			<button type="button" onclick="history.back()">뒤로가기</button>
-		</div>
-		<hr>
+			<tr>
+				<td id="title">이메일</td>
+				<td><input type="text" name="email1" maxlength="50">@ <select
+					name="email2">
+						<option>naver.com</option>
+						<option>daum.net</option>
+						<option>gmail.com</option>
+						<option>nate.com</option>
+				</select></td>
+			</tr>
+			 <tr>
+                    <td id="title">휴대전화</td>
+                    <td>
+                        <input type="text" name="cellphoneNo"/>
+                    </td>
+                </tr>
+		</table>
+		<br> <input type="submit" value="가입" /> <input type="button"
+			value="취소" onclick="history.back();">
 	</form>
 </div>
 
