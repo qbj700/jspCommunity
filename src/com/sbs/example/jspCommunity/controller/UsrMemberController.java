@@ -29,9 +29,8 @@ public class UsrMemberController {
 	}
 
 	public String showJoin(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
 
-		if (session.getAttribute("loginedMemberId") != null) {
+		if ((boolean)req.getAttribute("isLogined")) {
 			req.setAttribute("alertMsg", "로그아웃 후 진행해주세요.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
@@ -41,9 +40,8 @@ public class UsrMemberController {
 	}
 
 	public String doJoin(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
 
-		if (session.getAttribute("loginedMemberId") != null) {
+		if ((boolean)req.getAttribute("isLogined")) {
 			req.setAttribute("alertMsg", "로그아웃 후 진행해주세요.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
@@ -80,9 +78,8 @@ public class UsrMemberController {
 	}
 
 	public String showLogin(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
 
-		if (session.getAttribute("loginedMemberId") != null) {
+		if ((boolean)req.getAttribute("isLogined")) {
 			req.setAttribute("alertMsg", "로그아웃 후 진행해주세요.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
@@ -108,9 +105,8 @@ public class UsrMemberController {
 	}
 
 	public String doLogin(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
 
-		if (session.getAttribute("loginedMemberId") != null) {
+		if ((boolean)req.getAttribute("isLogined")) {
 			req.setAttribute("alertMsg", "로그아웃 후 진행해주세요.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
@@ -133,6 +129,7 @@ public class UsrMemberController {
 			return "common/redirect";
 		}
 
+		HttpSession session = req.getSession();
 		session.setAttribute("loginedMemberId", member.getId());
 
 		req.setAttribute("alertMsg", String.format("%s님 환영합니다.", member.getNickname()));
