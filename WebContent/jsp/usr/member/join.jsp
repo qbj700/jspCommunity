@@ -70,11 +70,6 @@ td {
       }
 	}
 
-	// 취소 버튼 클릭시 첫화면으로 이동
-	function goFirstForm() {
-	  location.href="MainForm.do";
-	}    
-
 	// 아이디 중복체크 화면open
 	function openIdChk(){
 
@@ -140,8 +135,8 @@ td {
                     </td>
                 </tr>
 		</table>
-		<br> <input type="submit" value="가입" /> <input type="button"
-			value="취소" onclick="history.back();">
+		<br> <input type="submit" value="가입" /> 
+		<input type="button" value="취소" onclick="history.back();">
 	</form>
 </div>
 

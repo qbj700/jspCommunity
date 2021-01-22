@@ -36,6 +36,11 @@ document.getElementById("userId").value = opener.document.userInfo.loginId.value
 }
 
 //아이디 중복체크
+function enterEvent() {
+	if (window.event.keyCode == 13){
+		idCheck();
+		}
+};
 function idCheck(){
 
 var loginId = document.getElementById("userId").value;
@@ -90,9 +95,9 @@ if (opener != null) {
 		<hr size="1" width="460">
 		<br>
 		<div id="chk">
-			<form id="checkForm">
-				<input type="text" name="idinput" id="userId"> <input
-					type="button" value="중복확인" onclick="idCheck()">
+			<form id="checkForm" onsubmit="return false;">
+				<input type="text" name="idinput" id="userId" onkeypress="enterEvent()">
+				<input type="button" value="중복확인" onclick="idCheck()">
 			</form>
 			<div id="msg"></div>
 			<br> <input id="cancelBtn" type="button" value="취소"
