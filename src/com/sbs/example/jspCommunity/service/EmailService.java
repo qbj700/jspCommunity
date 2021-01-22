@@ -1,5 +1,10 @@
 package com.sbs.example.jspCommunity.service;
 
+import com.sbs.example.jspCommunity.util.Util;
+
+import lombok.Data;
+
+@Data
 public class EmailService {
 	private String gmailId;
 	private String gmailPw;
@@ -11,5 +16,9 @@ public class EmailService {
 		this.gmailPw = gmailPw;
 		this.from = from;
 		this.fromName = fromName;
+	}
+
+	public int send(String to, String title, String body) {
+		return Util.sendMail(gmailId, gmailPw, from, fromName, to, title, body);
 	}
 }

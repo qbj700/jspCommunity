@@ -29,5 +29,8 @@ public class ConfigServlet extends HttpServlet {
 
 		EmailService emailService = Container.emailService;
 		emailService.init(gmailId, gmailPw, "jspCommunity", "jspCommunity");
+
+		//임시 메일발송 테스트용 코드
+		//emailService.send("qbj700@gmail.com", "메일테스트", "내용");
 	}
 }
