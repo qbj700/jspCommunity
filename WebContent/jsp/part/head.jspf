@@ -68,12 +68,16 @@
 			<!-- 로그인 메뉴 시작 -->
 			<c:if test="${isLogined == false}">
 				<div class="top-bar__sign-menu flex flex-as-c visible-md-up">
-					<div class="">
+					<div>
 						<a href="../member/login"><i class="far fa-user"></i> 로그인</a>
 					</div>
-					<div class="">
+					<div>
 						<a href="../member/join"><i class="fas fa-sign-in-alt"></i>
 							회원가입</a>
+					</div>
+					<div>
+						<a href="../member/findLoginId"><i class="far fa-address-card"></i>
+							아이디 찾기</a>
 					</div>
 				</div>
 			</c:if>
