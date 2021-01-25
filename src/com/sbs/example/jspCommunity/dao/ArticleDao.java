@@ -15,18 +15,18 @@ public class ArticleDao {
 		List<Article> articles = new ArrayList<>();
 
 		SecSql sql = new SecSql();
-		sql.append("SELECT article.*, member.name AS extra__writer");
-		sql.append(",board.name AS extra__boardName");
-		sql.append(",board.code AS extra__boardCode");
-		sql.append("FROM article");
-		sql.append("INNER JOIN `member`");
-		sql.append("ON article.memberId = member.id");
-		sql.append("INNER JOIN `board`");
-		sql.append("ON article.boardId = board.id");
+		sql.append("SELECT A.*, M.name AS extra__writer");
+		sql.append(",B.name AS extra__boardName");
+		sql.append(",B.code AS extra__boardCode");
+		sql.append("FROM article AS A");
+		sql.append("INNER JOIN `member` AS M");
+		sql.append("ON A.memberId = M.id");
+		sql.append("INNER JOIN `board` AS B");
+		sql.append("ON A.boardId = B.id");
 		if (boardId != 0) {
-			sql.append("WHERE article.boardId = ?", boardId);
+			sql.append("WHERE A.boardId = ?", boardId);
 		}
-		sql.append("ORDER BY article.id DESC");
+		sql.append("ORDER BY A.id DESC");
 
 		List<Map<String, Object>> articleListMap = MysqlUtil.selectRows(sql);
 
@@ -130,6 +130,16 @@ public class ArticleDao {
 
 		return new Board(boardMap);
 
+	}
+
+	public int getArticlesCountByBoardId(int boardId) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT COUNT(*) AS cnt");
+		sql.append("FROM article AS A");
+		if (boardId != 0) {
+			sql.append("WHERE A.boardId = ?", boardId);
+		}
+		return MysqlUtil.selectRowIntValue(sql);
 	}
 
 }

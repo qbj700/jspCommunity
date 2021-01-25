@@ -44,6 +44,10 @@ public class ArticleService {
 
 	public Board getBoardByBoardId(int boardId) {
 		return articleDao.getBoardByBoardId(boardId);
+	}
+
+	public int getArticlesCountByBoardId(int boardId) {
+		return articleDao.getArticlesCountByBoardId(boardId);
 	};
 
 }
