@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="회원가입" />
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+
 <%@ include file="../../part/head.jspf"%>
 
 <h1>${pageTitle }</h1>
@@ -68,6 +70,10 @@ td {
           alert("전화번호는 - 제외한 숫자만 입력해주세요.");
           return false;
       }
+      
+      form.loginPwReal.value = sha256(form.loginPw.value);
+      form.loginPw.value = "";
+      form.loginPwConfirm.value = "";
 	}
 
 	// 아이디 중복체크 화면open
@@ -87,6 +93,7 @@ td {
 	</script>
 	<form autocomplete="off" method="post" action="doJoin"
 		name="userInfo" onsubmit="return checkValue()">
+		<input type="hidden" name="loginPwReal" />
 		<table>
 			<tr>
 				<td id="title">아이디</td>
@@ -131,7 +138,7 @@ td {
 			 <tr>
                     <td id="title">휴대전화</td>
                     <td>
-                        <input type="text" name="cellphoneNo"/>
+                        <input type="tel" name="cellphoneNo"/>
                     </td>
                 </tr>
 		</table>
