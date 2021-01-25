@@ -79,6 +79,10 @@
 						<a href="../member/findLoginId"><i class="far fa-address-card"></i>
 							아이디 찾기</a>
 					</div>
+					<div>
+						<a href="../member/findLoginPw"><i class="fas fa-key"></i>
+							비밀번호 찾기</a>
+					</div>
 				</div>
 			</c:if>
 			<c:if test="${isLogined}">
