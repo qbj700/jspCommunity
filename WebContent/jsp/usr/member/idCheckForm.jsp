@@ -46,7 +46,7 @@ function idCheck(){
 var loginId = document.getElementById("userId").value;
 
 function callback(data){
-	if ( data.resultCode.substr(0, 2) == "S-") {
+	if ( data.success ) {
 		$("#cancelBtn").css('visibility', 'hidden');
 	   	$("#useBtn").css('visibility', 'visible');
 	   	alert(data.msg);
