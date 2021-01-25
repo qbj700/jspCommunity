@@ -11,7 +11,7 @@ import com.sbs.example.jspCommunity.util.SecSql;
 
 public class ArticleDao {
 
-	public List<Article> getForPrintArticlesByBoardId(int boardId) {
+	public List<Article> getForPrintArticlesByBoardId(int boardId, String searchKeywordType, String searchKeyword) {
 		List<Article> articles = new ArrayList<>();
 
 		SecSql sql = new SecSql();
@@ -26,6 +26,19 @@ public class ArticleDao {
 		if (boardId != 0) {
 			sql.append("WHERE A.boardId = ?", boardId);
 		}
+
+		if (searchKeywordType != null) {
+			if (searchKeywordType == null || searchKeywordType.equals("title")) {
+				sql.append("AND A.title LIKE CONCAT('%', ? '%')", searchKeyword);
+			}
+			if (searchKeywordType.equals("body")) {
+				sql.append("AND A.body LIKE CONCAT('%', ? '%')", searchKeyword);
+			}
+			if (searchKeywordType.equals("titleAndBody")) {
+				sql.append("AND (A.title LIKE CONCAT('%', ? '%') OR A.body LIKE CONCAT('%', ? '%'))", searchKeyword, searchKeyword);
+			}
+		}
+
 		sql.append("ORDER BY A.id DESC");
 
 		List<Map<String, Object>> articleListMap = MysqlUtil.selectRows(sql);
@@ -132,13 +145,28 @@ public class ArticleDao {
 
 	}
 
-	public int getArticlesCountByBoardId(int boardId) {
+	public int getArticlesCountByBoardId(int boardId, String searchKeywordType, String searchKeyword) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT COUNT(*) AS cnt");
 		sql.append("FROM article AS A");
+		sql.append("WHERE 1");
+
 		if (boardId != 0) {
-			sql.append("WHERE A.boardId = ?", boardId);
+			sql.append("AND A.boardId = ?", boardId);
 		}
+
+		if (searchKeywordType != null) {
+			if (searchKeywordType == null || searchKeywordType.equals("title")) {
+				sql.append("AND A.title LIKE CONCAT('%', ? '%')", searchKeyword);
+			}
+			if (searchKeywordType.equals("body")) {
+				sql.append("AND A.body LIKE CONCAT('%', ? '%')", searchKeyword);
+			}
+			if (searchKeywordType.equals("titleAndBody")) {
+				sql.append("AND (A.title LIKE CONCAT('%', ? '%') OR A.body LIKE CONCAT('%', ? '%'))", searchKeyword,searchKeyword);
+			}
+		}
+
 		return MysqlUtil.selectRowIntValue(sql);
 	}
 
