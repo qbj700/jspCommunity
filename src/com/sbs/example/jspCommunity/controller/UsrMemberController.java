@@ -39,7 +39,7 @@ public class UsrMemberController {
 		String nickname = req.getParameter("nickname");
 		String email1 = req.getParameter("email1");
 		String email2 = req.getParameter("email2");
-		String email = email1+ "@" + email2;
+		String email = email1 + "@" + email2;
 		String cellphoneNo = req.getParameter("cellphoneNo");
 
 		Member oldMember = memberService.getMemberByLoginId(loginId);
@@ -130,9 +130,9 @@ public class UsrMemberController {
 		rs.put("loginId", loginId);
 
 		req.setAttribute("data", Util.getJsonText(rs));
-		
+
 		return "common/pure";
-		
+
 	}
 
 	public String showFindLoginId(HttpServletRequest req, HttpServletResponse resp) {
@@ -171,16 +171,25 @@ public class UsrMemberController {
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
+
 		if (member.getEmail().equals(email) == false) {
 			req.setAttribute("alertMsg", "이메일 주소를 정확히 입력해주세요.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
-		memberService.sendTempLoginPwToEmail(member);
 
-		req.setAttribute("alertMsg", String.format("고객님의 임시 비밀번호가 %s (으)로 발송되었습니다.", member.getEmail()));
+		Map<String, Object> sendTempLoginPwToEmailRs = memberService.sendTempLoginPwToEmail(member);
+
+		String resultCode = (String) sendTempLoginPwToEmailRs.get("resultCode");
+		String resultMsg = (String) sendTempLoginPwToEmailRs.get("msg");
+
+		if (resultCode.startsWith("F-")) {
+			req.setAttribute("alertMsg", resultMsg);
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
+		req.setAttribute("alertMsg", resultMsg);
 		req.setAttribute("replaceUrl", "../member/login");
 		return "common/redirect";
 	}
