@@ -98,7 +98,7 @@ td {
 			<tr>
 				<td id="title">아이디</td>
 				<td><input type="text" name="loginId" maxlength="50"
-					onkeydown="inputIdChk()"> <input type="button" value="중복확인"
+					onkeydown="inputIdChk()" autofocus> <input type="button" value="중복확인"
 					onclick="openIdChk()"> <input type="hidden"
 					name="idDuplication" value="idUncheck"></td>
 			</tr>

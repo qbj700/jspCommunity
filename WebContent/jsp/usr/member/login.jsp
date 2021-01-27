@@ -75,7 +75,7 @@
 						<div>로그인 아이디</div>
 						<div>
 							<input type="text" name="loginId" placeholder="아이디를 입력해주세요."
-								maxlength="50">
+								maxlength="50" autofocus>
 						</div>
 
 

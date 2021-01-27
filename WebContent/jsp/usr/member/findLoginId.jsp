@@ -72,13 +72,13 @@
 						<div>이름</div>
 						<div>
 							<input type="text" name="name" placeholder="이름을 입력해주세요."
-								maxlength="50">
+								maxlength="50" autofocus>
 						</div>
 
 
 						<div>이메일</div>
 						<div>
-							<input type="email" name="email" placeholder="가입시 입력한 이메일을 입력해주세요."
+							<input type="email" name="email" placeholder="회원정보에 등록된 이메일을 입력해주세요."
 								maxlength="50">
 						</div>
 
