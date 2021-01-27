@@ -24,23 +24,61 @@ public class UsrArticleController {
 	public String showList(HttpServletRequest req, HttpServletResponse resp) {
 		String searchKeyword = req.getParameter("searchKeyword");
 		String searchKeywordType = req.getParameter("searchKeywordType");
-		
+
 		int page = Util.getAsInt(req.getParameter("page"), 1);
 		int itemsInAPage = 10;
 		int limitStart = (page - 1) * itemsInAPage;
-		
+
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 
 		Board board = articleService.getBoardByBoardId(boardId);
 		req.setAttribute("board", board);
-		
-		int totalCount = articleService.getArticlesCountByBoardId(boardId,searchKeywordType, searchKeyword);
-		
-		
+
+		int totalCount = articleService.getArticlesCountByBoardId(boardId, searchKeywordType, searchKeyword);
 		List<Article> articles = articleService.getForPrintArticlesByBoardId(boardId, limitStart, itemsInAPage, searchKeywordType, searchKeyword);
+		
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage);
+		int pageBoxSize = 10;
+		
+		// 현재 페이지 박스 시작, 끝 계산
+		int previousPageBoxesCount = (page - 1) / pageBoxSize;
+		int pageBoxStartPage = pageBoxSize * previousPageBoxesCount + 1;
+		int pageBoxEndPage = pageBoxStartPage + pageBoxSize - 1;
+
+		if (pageBoxEndPage > totalPage) {
+			pageBoxEndPage = totalPage;
+		}
+
+		// 이전버튼 페이지 계산
+		int pageBoxStartBeforePage = pageBoxStartPage - 1;
+		if (pageBoxStartBeforePage < 1) {
+			pageBoxStartBeforePage = 1;
+		}
+
+		// 다음버튼 페이지 계산
+		int pageBoxEndAfterPage = pageBoxEndPage + 1;
+
+		if (pageBoxEndAfterPage > totalPage) {
+			pageBoxEndAfterPage = totalPage;
+		}
+
+		// 이전버튼 노출여부 계산
+		boolean pageBoxStartBeforeBtnNeedToShow = pageBoxStartBeforePage != pageBoxStartPage;
+		// 다음버튼 노출여부 계산
+		boolean pageBoxEndAfterBtnNeedToShow = pageBoxEndAfterPage != pageBoxEndPage;
 
 		req.setAttribute("totalCount", totalCount);
+		req.setAttribute("articles", articles);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("page", page);
 		
+		req.setAttribute("pageBoxStartBeforeBtnNeedToShow", pageBoxStartBeforeBtnNeedToShow);
+		req.setAttribute("pageBoxEndAfterBtnNeedToShow", pageBoxEndAfterBtnNeedToShow);
+		req.setAttribute("pageBoxStartBeforePage", pageBoxStartBeforePage);
+		req.setAttribute("pageBoxEndAfterPage", pageBoxEndAfterPage);
+		req.setAttribute("pageBoxStartPage", pageBoxStartPage);
+		req.setAttribute("pageBoxEndPage", pageBoxEndPage);
+
 		req.setAttribute("articles", articles);
 		return "usr/article/list";
 	}
@@ -73,7 +111,7 @@ public class UsrArticleController {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
-		int memberId = (int)req.getAttribute("loginedMemberId");
+		int memberId = (int) req.getAttribute("loginedMemberId");
 
 		Map<String, Object> writeArgs = new HashMap<>();
 		writeArgs.put("memberId", memberId);
@@ -90,7 +128,7 @@ public class UsrArticleController {
 
 	public String showModify(HttpServletRequest req, HttpServletResponse resp) {
 		int id = Integer.parseInt(req.getParameter("id"));
-		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		Article article = articleService.getArticleById(id);
 
@@ -114,10 +152,10 @@ public class UsrArticleController {
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
 
 		int id = Integer.parseInt(req.getParameter("id"));
-		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		Article article = articleService.getArticleById(id);
-		
+
 		if (article == null) {
 			req.setAttribute("alertMsg", id + "번 게시물은 존재하지 않습니다.");
 			req.setAttribute("historyBack", true);
@@ -148,7 +186,7 @@ public class UsrArticleController {
 	public String doDelete(HttpServletRequest req, HttpServletResponse resp) {
 
 		int id = Integer.parseInt(req.getParameter("id"));
-		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		Article article = articleService.getArticleById(id);
 

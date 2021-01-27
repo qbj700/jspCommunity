@@ -14,41 +14,41 @@
 <hr />
 <div>
 	<script>
-	let DoSearchForm__submited = false;
-	function DoSearchForm__submit(form) {
-		form.searchKeyword.value = form.searchKeyword.value.trim();
+		let DoSearchForm__submited = false;
+		function DoSearchForm__submit(form) {
+			form.searchKeyword.value = form.searchKeyword.value.trim();
 
-		if (DoSearchForm__submited){
-			alert('처리중입니다.');
-			return;
-		}
+			if (DoSearchForm__submited) {
+				alert('처리중입니다.');
+				return;
+			}
 
-		if ( form.searchKeyword.value.length == 0) {
-			alert('검색어를 입력해주세요.');
-			form.searchKeyword.focus();
-			return;
+			if (form.searchKeyword.value.length == 0) {
+				alert('검색어를 입력해주세요.');
+				form.searchKeyword.focus();
+				return;
+			}
+			form.submit();
+			DoSearchForm__submited = true;
 		}
-		form.submit();
-		DoSearchForm__submited = true;
-	}
 	</script>
 	<form action="" onsubmit="DoSearchForm__submit(this); return false;">
-		<input type="hidden" name="boardId" value="${param.boardId}" />
-		 
-		 <select name="searchKeywordType">
-		 	<option value="titleAndBody">제목+본문</option>
-		 	<option value="title">제목</option>
-		 	<option value="body">본문</option>
-		 </select>
-		 <script>
-		 const param__searchKeywordType = '${param.searchKeywordType}';
+		<input type="hidden" name="boardId" value="${param.boardId}" /> <select
+			name="searchKeywordType">
+			<option value="titleAndBody">제목+본문</option>
+			<option value="title">제목</option>
+			<option value="body">본문</option>
+		</select>
+		<script>
+			const param__searchKeywordType = '${param.searchKeywordType}';
 
-		 if ( param__searchKeywordType ){
-			 $('select[name="searchKeywordType"]').val(param__searchKeywordType);
-		 }
-		 </script>
-		<input value="${param.searchKeyword}" type="text" name="searchKeyword" placeholder="검색어를 입력해주세요." />
-		<input type="submit" value="검색"/>
+			if (param__searchKeywordType) {
+				$('select[name="searchKeywordType"]').val(
+						param__searchKeywordType);
+			}
+		</script>
+		<input value="${param.searchKeyword}" type="text" name="searchKeyword"
+			placeholder="검색어를 입력해주세요." /> <input type="submit" value="검색" />
 	</form>
 </div>
 
@@ -58,10 +58,50 @@
 
 <c:forEach var="article" items="${articles }">
 	<div class="list">
-		번호 : ${article.id} <br /> 작성일 : ${article.regDate} <br /> 작성자 :
-		${article.extra__writer} <br /> 제목 : <a
-			href="detail?id=${article.id}">${article.title}</a>
+		번호 : ${article.id} 
+		<br /> 
+		작성일 : ${article.regDate} 
+		<br /> 
+		작성자 : ${article.extra__writer} 
+		<br /> 
+		제목 : 
+		<a href="detail?id=${article.id}">${article.title}</a>
 		<hr />
 	</div>
 </c:forEach>
+
+<br />
+<br />
+<br />
+
+<style>
+.red {
+	color:red;
+}
+</style>
+<div class="con">
+	<c:set var="aUrl" value="?page=1&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
+	<a href="${aUrl}">첫 페이지 &nbsp;</a>
+	
+	<c:if test="${pageBoxStartBeforeBtnNeedToShow}">
+		<c:set var="aUrl" value="?page=${pageBoxStartBeforePage}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}"/>
+		<a href="${aUrl}">◀</a>
+	</c:if>
+	<c:forEach var="i" begin="${pageBoxStartPage}" end="${pageBoxEndPage}" step="1">
+		<c:set var="aClass" value="${page == i ? 'red' : '' }"/>
+		<c:set var="aUrl" value="?page=${i}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}"/>
+		<a class="${aClass}" href="${aUrl}">${i}</a>
+	</c:forEach>
+	<c:if test="${pageBoxEndAfterBtnNeedToShow}">
+		<c:set var="aUrl" value="?page=${pageBoxEndAfterPage}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}"/>
+		<a href="${aUrl}">▶</a>
+	</c:if>
+	
+	<c:set var="aUrl" value="?page=${totalPage}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
+	<a href="${aUrl}">&nbsp; 끝 페이지</a>
+</div>
+<br />
+<br />
+<br />
+<br />
 <%@ include file="../../part/foot.jspf"%>
