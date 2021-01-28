@@ -186,4 +186,47 @@ public class UsrMemberController {
 		req.setAttribute("replaceUrl", "../member/login");
 		return "common/redirect";
 	}
+
+	public String showModify(HttpServletRequest req, HttpServletResponse resp) {
+		Member member = (Member) req.getAttribute("loginedMember");
+		String[] emailBits = member.getEmail().split("@");
+		String email1 = emailBits[0];
+		String email2 = emailBits[1];
+		
+		req.setAttribute("email1", email1);
+		req.setAttribute("email2", email2);
+		
+		return "usr/member/modify";
+	}
+
+	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
+		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		
+		String loginPw = req.getParameter("loginPwReal");
+		
+		if ( loginPw != null && loginPw.length() == 0) {
+			loginPw = null;
+		}
+		String name = req.getParameter("name");
+		String nickname = req.getParameter("nickname");
+		String email1 = req.getParameter("email1");
+		String email2 = req.getParameter("email2");
+		String email = email1 + "@" + email2;
+		String cellphoneNo = req.getParameter("cellphoneNo");
+		
+		Map<String, Object> modifyParam	= new HashMap<>();
+		
+		modifyParam.put("loginPw", loginPw);
+		modifyParam.put("name", name);
+		modifyParam.put("nickname", nickname);
+		modifyParam.put("email", email);
+		modifyParam.put("cellphoneNo", cellphoneNo);
+		modifyParam.put("id", loginedMemberId);
+		
+		memberService.modify(modifyParam);
+		
+		req.setAttribute("alertMsg", "회원정보가 수정되었습니다.");
+		req.setAttribute("replaceUrl", "../home/main");
+		return "common/redirect";
+	}
 }

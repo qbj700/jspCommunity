@@ -104,11 +104,15 @@
 			</c:if>
 			<c:if test="${isLogined}">
 				<div class="top-bar__sign-menu flex flex-as-c visible-md-up">
-					<div class="">
+					<div>
 						<a href="../article/write?boardId=1"><i class="fas fa-plus"></i>
 							공지사항 글쓰기</a>
 					</div>
-					<div class="">
+					<div>
+						<a href="../member/modify"><i class="fas fa-user-edit"></i>
+							회원정보 수정</a>
+					</div>
+					<div>
 						<a href="../member/doLogout"
 							onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }"><i
 							class="fas fa-sign-out-alt"></i> 로그아웃</a>
