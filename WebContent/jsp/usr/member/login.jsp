@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="로그인" />
@@ -27,7 +28,7 @@
 </head>
 
 <body>
-	
+
 	<section class="login-page flex flex-ai-c flex-jc-c">
 		<div class="login-page__frame">
 			<div class="frame__content-1">
@@ -36,59 +37,67 @@
 							.</span> <i class="fas fa-asterisk"></i>
 					</a>
 				</div>
+				<div class="pageTitle"><h1>회원 로그인</h1></div>
 
 				<div class="login-form">
-				<script>
-		let DoLoginForm__submited = false;
-		function DoLoginForm__submit(form) {
-			if (DoLoginForm__submited) {
-				alert('처리중입니다.');
-				return;
-			}
+					<script>
+						let DoLoginForm__submited = false;
+						function DoLoginForm__submit(form) {
+							if (DoLoginForm__submited) {
+								alert('처리중입니다.');
+								return;
+							}
 
-			form.loginId.value = form.loginId.value.trim();
+							form.loginId.value = form.loginId.value.trim();
 
-			if (form.loginId.value.length == 0) {
-				alert('로그인 아이디를 입력해주세요.');
-				form.loginId.focus();
+							if (form.loginId.value.length == 0) {
+								alert('로그인 아이디를 입력해주세요.');
+								form.loginId.focus();
 
-				return;
-			}
+								return;
+							}
 
-			form.loginPw.value = form.loginPw.value.trim();
+							form.loginPw.value = form.loginPw.value.trim();
 
-			if (form.loginPw.value.length == 0) {
-				alert('비밀번호를 입력해주세요.');
-				form.loginPw.focus();
+							if (form.loginPw.value.length == 0) {
+								alert('비밀번호를 입력해주세요.');
+								form.loginPw.focus();
 
-				return;
-			}
-			form.loginPwReal.value = sha256(form.loginPw.value);
-			form.loginPw.value = "";
+								return;
+							}
+							form.loginPwReal.value = sha256(form.loginPw.value);
+							form.loginPw.value = "";
 
-			form.submit();
-			DoLoginForm__submited = true;
-		}
-	</script>
-					<form autocomplete="off" action="doLogin" method="POST" onsubmit="DoLoginForm__submit(this); return false;">
+							form.submit();
+							DoLoginForm__submited = true;
+						}
+					</script>
+					<form autocomplete="off" action="doLogin" method="POST"
+						onsubmit="DoLoginForm__submit(this); return false;">
 						<input type="hidden" name="loginPwReal" />
-						<div>로그인 아이디</div>
-						<div>
-							<input type="text" name="loginId" placeholder="아이디를 입력해주세요."
-								maxlength="50" autofocus>
+
+						<div class="login-form__section-1">
+							<input type="text" name="loginId" autocomplete="off" required>
+							<label class="label-name" for="name"><span
+								class="content-name"> 로그인 아이디 </span></label>
 						</div>
+						<div class="find-pw-link"><a href="findLoginId">아이디가 기억나지 않으시나요?</a></div>
 
 
-						<div>로그인 비밀번호</div>
-						<div>
-							<input type="password" name="loginPw" placeholder="비밀번호를 입력해주세요."
-								maxlength="50">
+						<div class="login-form__section-1">
+							<input type="text" name="loginPw" autocomplete="off" required>
+							<label class="label-name" for="name"><span
+								class="content-name"> 로그인 비밀번호 </span></label>
 						</div>
+						
+						<div class="find-pw-link"><a href="findLoginPw">혹시 비밀번호를 잊으셨나요?</a></div>
 
 						<div class="login-submit-box">
 							<input class="login-submit" type="submit" value="로그인">
 						</div>
 
+						<div class="join-link">아직 회원이 아니신가요? <a href="join">회원가입하기</a></div>
+						
 					</form>
 				</div>
 

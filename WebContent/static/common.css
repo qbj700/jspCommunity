@@ -321,14 +321,10 @@ a {
 
 .login-page__frame {
   width:450px;
-  min-height:700px;
   padding:40px 40px;
   box-sizing:border-box;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
   background-color: #fff;
-}
-.frame__content-1 {
-  min-height:660px;
 }
 .login-logo-box {
   font-size:1.8rem;
@@ -336,26 +332,107 @@ a {
   text-align:center;
   padding-top:40px;
   padding-bottom:40px;
-  margin-bottom:40px;
   color:skyblue;
   box-sizing:border-box;
 }
-
-.login-form > form > div {
-  margin-top:20px;
+/* input 디자인 시작 */
+.login-form__section-1 > * {
+  box-sizing:border-box;
 }
+
+.login-form__section-1{
+  margin-top:30px;
+  width: 100%;
+  position:relative;
+  height: 50px;
+  overflow: hidden;
+}
+.login-form__section-1 input{
+  font-size: 16px;
+  padding-top: 20px;
+  width: 100%;
+  height: 100%;
+	background: transparent;
+	color: #595F6E;
+  border: none;
+  outline: none;
+}
+.login-form__section-1 label{
+  
+  position:absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid black;
+  pointer-events: none;
+}
+.login-form__section-1 label::after{
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #5FA8D3;
+  transition: transform 0.2s cubic-bezier(1,.06,.73,.37);
+  transform: translateX(-100%);
+}
+
+.content-name{
+  position:absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3s ease;
+}
+
+.login-form__section-1 input:focus + .label-name .content-name, 
+.login-form__section-1 input:valid + .label-name .content-name{
+  transform: translateY(-150%);
+  font-size: 14px;
+  color: #5FA8D3;
+}
+.login-form__section-1 input:focus + .label-name::after, 
+.login-form__section-1 input:valid + .label-name::after{
+  transform:translateX(0%);
+}
+/* input 디자인 끝 */
+
 .login-submit-box {
   width:100%;
+  margin-top:140px;
+  margin-bottom:20px;
 }
 .login-submit {
-  width:200px;
+  width:100%;
+  height:40px;
   margin-right:auto;
   margin-left:auto;
   display:block;
   box-sizing:border-box;
   border: 2px solid skyblue;
-  border-radius:7px;
+  border-radius:5px;
 }
+.find-pw-link {
+  text-align:end;
+  margin-top:20px;
+}
+.find-pw-link > a{
+  font-size:0.5rem;
+  text-decoration:underline;
+  color:blue;
+}
+.join-link {
+  font-size:0.5rem;
+  text-align:center;
+}
+
+.join-link > a{
+  font-size:0.5rem;
+  text-decoration:underline;
+  color:blue;
+}
+
 /* 로그인 화면 끝 */
 /* 커스텀 끝 */
 

@@ -36,6 +36,7 @@
 							.</span> <i class="fas fa-asterisk"></i>
 					</a>
 				</div>
+				<div class="pageTitle"><h1>아이디 찾기</h1></div>
 
 				<div class="login-form">
 				<script>
@@ -69,22 +70,25 @@
 		}
 	</script>
 					<form autocomplete="off" action="doFindLoginId" method="POST" onsubmit="DoFindLoginIdForm__submit(this); return false;">
-						<div>이름</div>
-						<div>
-							<input type="text" name="name" placeholder="이름을 입력해주세요."
-								maxlength="50" autofocus>
+						
+						<div class="login-form__section-1">
+							<input type="text" name="name" autocomplete="off" required>
+							<label class="label-name" for="name"><span
+								class="content-name"> 이름 </span></label>
 						</div>
 
 
-						<div>이메일</div>
-						<div>
-							<input type="email" name="email" placeholder="회원정보에 등록된 이메일을 입력해주세요."
-								maxlength="50">
+						<div class="login-form__section-1">
+							<input type="email" name="email" autocomplete="off" required>
+							<label class="label-name" for="name"><span
+								class="content-name"> 회원정보에 등록된 이메일 </span></label>
 						</div>
 
 						<div class="login-submit-box">
 							<input class="login-submit" type="submit" value="로그인 아이디 찾기">
 						</div>
+						
+						<div class="join-link">아직 회원이 아니신가요? <a href="join">회원가입하기</a></div>
 
 					</form>
 				</div>
