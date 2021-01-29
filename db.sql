@@ -122,3 +122,18 @@ memberId = 2,
 boardId = 1,
 title = '제목5',
 `body` = '내용5';
+
+# 부가정보 테이블 생성
+CREATE TABLE attr(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    relTypeCode CHAR(20) NOT NULL,
+    relId INT(10) UNSIGNED NOT NULL,
+    typeCode CHAR(30) NOT NULL,
+    type2Code CHAR(30) NOT NULL,
+    `value` TEXT NOT NULL,
+    `expireDate` DATETIME NULL,
+    UNIQUE INDEX (relTypeCode, relId, typeCode, type2Code),
+    INDEX (relTypeCode, typeCode, type2Code)
+);

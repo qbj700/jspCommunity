@@ -69,16 +69,7 @@ public class UsrMemberController {
 	public String showLogin(HttpServletRequest req, HttpServletResponse resp) {
 		return "usr/member/login";
 	}
-
-	public String doLogout(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
-		session.removeAttribute("loginedMemberId");
-
-		req.setAttribute("alertMsg", "로그아웃 되었습니다.");
-		req.setAttribute("replaceUrl", "../home/main");
-		return "common/redirect";
-	}
-
+	
 	public String doLogin(HttpServletRequest req, HttpServletResponse resp) {
 		String loginId = req.getParameter("loginId");
 		String loginPw = req.getParameter("loginPwReal");
@@ -99,12 +90,30 @@ public class UsrMemberController {
 
 		HttpSession session = req.getSession();
 		session.setAttribute("loginedMemberId", member.getId());
+		
+		String value = Container.attrService.getValue("member__" + member.getId() + "__extra__isUsingTempPassword");
 
 		req.setAttribute("alertMsg", String.format("%s님 환영합니다.", member.getNickname()));
+		
+		if (value.equals("1")) {
+			req.setAttribute("alertMsg2", "임시 비밀번호를 사용중입니다. 비밀번호 변경후 이용해주시기 바랍니다.");
+		}
+		
+		req.setAttribute("replaceUrl", "../home/main");
+		return "common/redirect";
+		
+		
+	}
+
+	public String doLogout(HttpServletRequest req, HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+		session.removeAttribute("loginedMemberId");
+
+		req.setAttribute("alertMsg", "로그아웃 되었습니다.");
 		req.setAttribute("replaceUrl", "../home/main");
 		return "common/redirect";
 	}
-
+	
 	public String showIdCheckForm(HttpServletRequest req, HttpServletResponse resp) {
 		return "usr/member/idCheckForm";
 	}
@@ -207,6 +216,11 @@ public class UsrMemberController {
 		if ( loginPw != null && loginPw.length() == 0) {
 			loginPw = null;
 		}
+		
+		if ( loginPw != null && loginPw.length() > 0) {
+			Container.attrService.remove("member__" + loginedMemberId + "__extra__isUsingTempPassword");
+		}
+		
 		String name = req.getParameter("name");
 		String nickname = req.getParameter("nickname");
 		String email1 = req.getParameter("email1");
