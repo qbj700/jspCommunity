@@ -434,6 +434,20 @@ a {
 }
 
 /* 로그인 화면 끝 */
+/* 임시 비밀번호 경고 시작*/
+.warning {
+	text-align:center;
+	width:100%;
+	color:white;
+	background-color:red;
+	font-size:1.3rem;
+}
+@media ( max-width:720px ) {
+  .warning {
+  font-size:0.8rem;
+  }
+}
+/* 임시 비밀번호 경고 시작*/
 /* 커스텀 끝 */
 
 

@@ -40,6 +40,10 @@
 <body>
 <div class="body-content">
 	<!-- 모바일 탑바 시작 -->
+	<c:if test="${needToChangePw }">
+		<div class="warning">※ 임시 비밀번호를 사용중이므로 비밀번호 변경후 이용해주시기 바랍니다. ※</div>
+	</c:if>
+		
 	<header class="mobile-top-bar con-min-width visible-sm-down flex">
 		<!-- 모바일 사이드바 시작 -->
 		<div class=" flex-1-0-0 flex ">
