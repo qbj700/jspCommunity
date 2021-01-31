@@ -59,9 +59,10 @@ public class UsrMemberController {
 		joinArgs.put("email", email);
 		joinArgs.put("cellphoneNo", cellphoneNo);
 
-		int newArticleId = memberService.join(joinArgs);
+		int id = memberService.join(joinArgs);
+		Container.attrService.setValue("member__" + id + "__extra__isValidPassword", "1", "DATE_ADD(NOW(), INTERVAL 90 DAY)");
 
-		req.setAttribute("alertMsg", newArticleId + "번 회원이 생성되었습니다.");
+		req.setAttribute("alertMsg", id + "번 회원이 생성되었습니다.");
 		req.setAttribute("replaceUrl", "../home/main");
 		return "common/redirect";
 	}
@@ -219,6 +220,7 @@ public class UsrMemberController {
 		
 		if ( loginPw != null && loginPw.length() > 0) {
 			Container.attrService.remove("member__" + loginedMemberId + "__extra__isUsingTempPassword");
+			Container.attrService.setValue("member__" + loginedMemberId + "__extra__isValidPassword", "1", "DATE_ADD");
 		}
 		
 		String name = req.getParameter("name");

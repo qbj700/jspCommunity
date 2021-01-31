@@ -73,6 +73,7 @@ public abstract class DispatcherServlet extends HttpServlet {
 		boolean isLogined = false;
 		int loginedMemberId = 0;
 		Member loginedMember = null;
+		boolean isUsingTempPassword = false;
 		boolean needToChangePw = false; 
 
 		HttpSession session = req.getSession();
@@ -82,12 +83,18 @@ public abstract class DispatcherServlet extends HttpServlet {
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
 			loginedMember = Container.memberService.getMemberById(loginedMemberId);
 			
-			String value = Container.attrService.getValue("member__" + loginedMemberId + "__extra__isUsingTempPassword");
-			if (value.equals("1")) {
+			String isUsingTempPasswordValue = Container.attrService.getValue("member__" + loginedMemberId + "__extra__isUsingTempPassword");
+			if (isUsingTempPasswordValue.equals("1")) {
+				isUsingTempPassword = true;
+			}
+			
+			String needToChangePwValue = Container.attrService.getValue("member__" + loginedMemberId + "__extra__isValidPassword");
+			if (needToChangePwValue == "") {
 				needToChangePw = true;
 			}
 		}
 
+		req.setAttribute("isUsingTempPassword", isUsingTempPassword);
 		req.setAttribute("needToChangePw", needToChangePw);
 		req.setAttribute("isLogined", isLogined);
 		req.setAttribute("loginedMemberId", loginedMemberId);

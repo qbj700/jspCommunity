@@ -137,3 +137,17 @@ CREATE TABLE attr(
     UNIQUE INDEX (relTypeCode, relId, typeCode, type2Code),
     INDEX (relTypeCode, typeCode, type2Code)
 );
+
+INSERT INTO attr 
+(regDate, updateDate, expireDate, `relTypeCode`, `relId`, `typeCode`, `type2Code`, `value`) 
+VALUES 
+(NOW(), NOW(), DATE_ADD(NOW(), INTERVAL 90 DAY), 'member', '1', 'extra', 'isValidPassword', '1') 
+ON DUPLICATE KEY UPDATE 
+updateDate = NOW() , expireDate = DATE_ADD(NOW(), INTERVAL 90 DAY) , `value` = '1';
+
+INSERT INTO attr 
+(regDate, updateDate, expireDate, `relTypeCode`, `relId`, `typeCode`, `type2Code`, `value`) 
+VALUES 
+(NOW(), NOW(), DATE_ADD(NOW(), INTERVAL 30 SECOND), 'member', '2', 'extra', 'isValidPassword', '1') 
+ON DUPLICATE KEY UPDATE 
+updateDate = NOW() , expireDate = DATE_ADD(NOW(), INTERVAL 30 SECOND) , `value` = '1';
