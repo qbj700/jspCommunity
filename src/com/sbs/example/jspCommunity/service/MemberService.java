@@ -60,7 +60,7 @@ public class MemberService {
 
 		// 메일 발송
 		int sendRs = emailService.send(actor.getEmail(), title, body);
-		
+
 		if (sendRs != 1) {
 			return new ResultData("F-1", "메일발송에 실패하였습니다.");
 		}
@@ -76,12 +76,24 @@ public class MemberService {
 		modifyParam.put("id", actor.getId());
 		modifyParam.put("loginPw", Util.sha256(tempPassword));
 		modify(modifyParam);
-		
+
 		attrService.setValue("member__" + actor.getId() + "__extra__isUsingTempPassword", "1", null);
 	}
 
 	public void modify(Map<String, Object> param) {
 		memberDao.modify(param);
+	}
+
+	public void sendCongratulationsEmail(String name, String nickname, String email) {
+		// 메일 제목과 내용 만들기
+		String siteName = App.getSite();
+		String siteLoginUrl = App.getLoginUrl();
+		String title = "[" + siteName + "] 가입을 환영합니다.";
+		String body = "<h1>" + name + "(" + nickname + ") 님" + siteName + "에 가입해주셔서 감사합니다.</h1>";
+		body += "<a href=\"" + siteLoginUrl + "\" target=\"_blank\">로그인 하러가기</a>";
+
+		// 메일 발송
+		emailService.send(email, title, body);
 	}
 
 }

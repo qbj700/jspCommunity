@@ -62,6 +62,9 @@ public class UsrMemberController {
 		int id = memberService.join(joinArgs);
 		Container.attrService.setValue("member__" + id + "__extra__isValidPassword", "1", "DATE_ADD(NOW(), INTERVAL 90 DAY)");
 
+		// 가입축하 이메일 발송
+		// memberService.sendCongratulationsEmail(name, nickname, email);
+		
 		req.setAttribute("alertMsg", id + "번 회원이 생성되었습니다.");
 		req.setAttribute("replaceUrl", "../home/main");
 		return "common/redirect";
@@ -185,6 +188,7 @@ public class UsrMemberController {
 		}
 
 		ResultData sendTempLoginPwToEmailRs = memberService.sendTempLoginPwToEmail(member);
+		Container.attrService.setValue("member__" + member.getId() + "__extra__isValidPassword", "1", "DATE_ADD(NOW(), INTERVAL 90 DAY)");
 
 		if (sendTempLoginPwToEmailRs.isFail()) {
 			req.setAttribute("alertMsg", sendTempLoginPwToEmailRs.getMsg());
