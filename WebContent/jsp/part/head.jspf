@@ -18,19 +18,27 @@
 
 <!-- 토스트 UI 시작 -->
 <!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
 
 <!-- 토스트 UI 에디터, 자바스크립트 코어 -->
-<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"
+	defer></script>
 
 <!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
 <!-- 토스트 UI 에디터, CSS 코어 -->
-<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
 <!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
-<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+<script
+	src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js"
+	defer></script>
 <!-- 토스트 UI 끝 -->
 
 <link rel="stylesheet"
@@ -38,98 +46,93 @@
 <script src="${pageContext.request.contextPath}/static/common.js" defer></script>
 </head>
 <body>
-<div class="body-content">
-	<!-- 모바일 탑바 시작 -->
-	<c:if test="${isUsingTempPassword }">
-		<div class="warning">※ 임시 비밀번호를 사용중이므로 비밀번호 변경후 이용해주시기 바랍니다. ※</div>
-	</c:if>
-	<c:if test="${needToChangePw }">
-		<div class="warning">※ 비밀번호를 사용한지 90일이 경과하였습니다. 비밀번호 변경후 이용해주시기 바랍니다. ※</div>
-	</c:if>
-		
-	<header class="mobile-top-bar con-min-width visible-sm-down flex">
-		<!-- 모바일 사이드바 시작 -->
-		<div class=" flex-1-0-0 flex ">
-			<div class="mobile-top-bar__btn-toggle-side-bar flex-as-c">
-				<div></div>
-				<div></div>
-				<div></div>
+	<div class="body-content">
+		<!-- 모바일 탑바 시작 -->
+		<c:if test="${isUsingTempPassword }">
+			<div class="warning">※ 임시 비밀번호를 사용중이므로 비밀번호 변경후 이용해주시기 바랍니다. ※</div>
+		</c:if>
+		<c:if test="${needToChangePw }">
+			<div class="warning">※ 비밀번호를 사용한지 90일이 경과하였습니다. 비밀번호 변경후 이용해주시기
+				바랍니다. ※</div>
+		</c:if>
+
+		<header class="mobile-top-bar con-min-width visible-sm-down flex">
+			<!-- 모바일 사이드바 시작 -->
+			<div class=" flex-1-0-0 flex ">
+				<div class="mobile-top-bar__btn-toggle-side-bar flex-as-c">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
 			</div>
-		</div>
-		<!-- 모바일 사이드바 끝 -->
-		<!-- 모바일 로고바 시작 -->
+			<!-- 모바일 사이드바 끝 -->
+			<!-- 모바일 로고바 시작 -->
 
-		<div class="mobile-logo-bar con-min-width height-100p flex">
-			<div class="con flex-as-c">
-				<a href="../home/main" class="mobile-logo"> <span
-					class="logo__text">MODUMOA .</span> <i class="fas fa-asterisk"></i>
-				</a>
-			</div>
-		</div>
-
-		<!-- 모바일 로고바 끝 -->
-		<div class=" flex-1-0-0"></div>
-	</header>
-	<!-- 모바일 탑바 끝 -->
-	<!-- 모바일 사이드바 시작 -->
-	<aside class="mobile-side-bar visible-sm-down"></aside>
-	<!-- 모바일 사이드바 끝 -->
-
-
-	<!-- 탑바 시작 -->
-	<header class="top-bar con-min-width visible-md-up">
-		<div class="con flex height-100p">
-			<!-- 로고 시작 -->
-			<div class="top-bar__left flex flex-ai-c">
-				<div class="logo">
-					<a href="../home/main" class="logo-box"> <span>MODUMOA .</span>
-						<i class="fas fa-asterisk"></i>
+			<div class="mobile-logo-bar con-min-width height-100p flex">
+				<div class="con flex-as-c">
+					<a href="../home/main" class="mobile-logo"> <span
+						class="logo__text">MODUMOA .</span> <i class="fas fa-asterisk"></i>
 					</a>
 				</div>
 			</div>
-			<div class="flex-1-0-0"></div>
-			<!-- 로고 끝 -->
-			<!-- 로그인 메뉴 시작 -->
-			<c:if test="${isLogined == false}">
-				<div class="top-bar__sign-menu flex flex-as-c visible-md-up">
-					<div>
-						<a href="../member/login"><i class="far fa-user"></i> 로그인</a>
-					</div>
-					<div>
-						<a href="../member/join"><i class="fas fa-sign-in-alt"></i>
-							회원가입</a>
-					</div>
-					<div>
-						<a href="../member/findLoginId"><i class="far fa-address-card"></i>
-							아이디 찾기</a>
-					</div>
-					<div>
-						<a href="../member/findLoginPw"><i class="fas fa-key"></i>
-							비밀번호 찾기</a>
-					</div>
-				</div>
-			</c:if>
-			<c:if test="${isLogined}">
-				<div class="top-bar__sign-menu flex flex-as-c visible-md-up">
-					<div>
-						<a href="../article/write?boardId=1"><i class="fas fa-plus"></i>
-							공지사항 글쓰기</a>
-					</div>
-					<div>
-						<a href="../member/modify"><i class="fas fa-user-edit"></i>
-							회원정보 수정</a>
-					</div>
-					<div>
-						<a href="../member/doLogout"
-							onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }"><i
-							class="fas fa-sign-out-alt"></i> 로그아웃</a>
-					</div>
-				</div>
-			</c:if>
-			<!-- 로그인 메뉴 끝 -->
-		</div>
-	</header>
-	<!-- 탑바 끝 -->
 
-	<main class="con-min-width flex-1-0-0">
-		<div class="con">
+			<!-- 모바일 로고바 끝 -->
+			<div class=" flex-1-0-0"></div>
+		</header>
+		<!-- 모바일 탑바 끝 -->
+		<!-- 모바일 사이드바 시작 -->
+		<aside class="mobile-side-bar visible-sm-down"></aside>
+		<!-- 모바일 사이드바 끝 -->
+
+
+		<!-- 탑바 시작 -->
+		<header class="top-bar con-min-width visible-md-up">
+			<div class="con flex height-100p">
+				<!-- 로고 시작 -->
+				<div class="top-bar__left flex flex-ai-c">
+					<div class="logo">
+						<a href="../home/main" class="logo-box"> <span>MODUMOA
+								.</span> <i class="fas fa-asterisk"></i>
+						</a>
+					</div>
+				</div>
+				<div class="flex-1-0-0"></div>
+				<!-- 로고 끝 -->
+
+				<!-- 로그인 메뉴 시작 -->
+				<nav class="top-bar__sign-menu visible-md-up">
+					<ul class="flex height-100p">
+						<c:if test="${isLogined == false}">
+							<li><a class="flex flex-ai-c height-100p"
+								href="../member/login"> <span><i class="far fa-user"></i></span>
+									<span>로그인</span>
+							</a></li>
+							<li><a class="flex flex-ai-c height-100p"
+								href="../member/join"> <span><i
+										class="fas fa-sign-in-alt"></i></span> <span>회원가입</span>
+							</a></li>
+						</c:if>
+						<c:if test="${isLogined}">
+							<li><a class="flex flex-ai-c height-100p"
+								href="../article/write?boardId=1"> <span><i
+										class="fas fa-plus"></i></span> <span>공지사항 글쓰기</span>
+							</a></li>
+							<li><a class="flex flex-ai-c height-100p"
+								href="../member/modify"> <span><i
+										class="fas fa-user-edit"></i></span> <span>회원정보 수정</span>
+							</a></li>
+							<li><a class="flex flex-ai-c height-100p"
+								href="../member/doLogout"
+								onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }">
+									<span><i class="fas fa-sign-out-alt"></i></span> <span>로그아웃</span>
+							</a></li>
+						</c:if>
+					</ul>
+				</nav>
+				<!-- 로그인 메뉴 끝 -->
+
+			</div>
+		</header>
+		<!-- 탑바 끝 -->
+
+		<main>
