@@ -88,6 +88,8 @@
 						</div>
 						
 						<div class="join-link">아직 회원이 아니신가요? <a href="join">회원가입하기</a></div>
+						
+						<div class="join-link">아이디가 기억나지 않으시나요? <a href="findLoginId">아이디 찾기</a></div>
 
 					</form>
 				</div>

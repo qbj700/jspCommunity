@@ -89,6 +89,8 @@
 						</div>
 						
 						<div class="join-link">아직 회원이 아니신가요? <a href="join">회원가입하기</a></div>
+						
+						<div class="join-link">혹시 비밀번호를 잊으셨나요? <a href="findLoginPw">비밀번호 찾기</a></div>
 
 					</form>
 				</div>
