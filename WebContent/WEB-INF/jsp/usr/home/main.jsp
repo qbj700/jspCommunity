@@ -7,7 +7,7 @@
 <%@ include file="../../part/head.jspf"%>
 
 <div class="con-min-width">
-	<div class="con">
+	<div class="con padding-0-10">
 
 		<h>TEST</h>
 		<a href="../article/list?boardId=1">공지사항 게시물 리스트</a>

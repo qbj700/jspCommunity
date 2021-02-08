@@ -13,7 +13,7 @@
 </div>
 
 <div class="con-min-width">
-	<div class="con">
+	<div class="con padding-0-10">
 
 		<div>
 			<a href="modify?id=${article.id}&memberId=${article.memberId}">

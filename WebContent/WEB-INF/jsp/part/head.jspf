@@ -69,7 +69,7 @@
 			<!-- 모바일 로고바 시작 -->
 
 			<div class="mobile-logo-bar con-min-width height-100p flex">
-				<div class="con flex-as-c">
+				<div class="con padding-0-10 flex-as-c">
 					<a href="../home/main" class="mobile-logo"> <span
 						class="logo__text">MODUMOA .</span> <i class="fas fa-asterisk"></i>
 					</a>
@@ -87,7 +87,7 @@
 
 		<!-- 탑바 시작 -->
 		<header class="top-bar con-min-width visible-md-up">
-			<div class="con flex height-100p">
+			<div class="con padding-0-10 flex height-100p">
 				<!-- 로고 시작 -->
 				<div class="top-bar__left flex flex-ai-c">
 					<div class="logo">

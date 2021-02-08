@@ -151,6 +151,10 @@ a {
   color:deeppink;
 }
 
+.padding-0-10 {
+	padding: 0 10px;
+}
+
 /* 커스텀 시작 */
 :root {
   --site-width:1044px;
@@ -170,7 +174,6 @@ a {
 
 .con {
   max-width: var(--site-width);
-  padding-left:10px;
 }
 
 .con-min-width {

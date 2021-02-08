@@ -7,14 +7,14 @@
 <%@ include file="../../part/head.jspf"%>
 
 <div class="title-bar con-min-width">
-	<h1 class="con">
+	<h1 class="con padding-0-10">
 		<span>${pageTitle }</span>
 	</h1>
 </div>
 
 
 <div class="con-min-width">
-	<div class="con">
+	<div class="con padding-0-10">
 		<div>
 			<script>
 				let DoModifyForm__submited = false;

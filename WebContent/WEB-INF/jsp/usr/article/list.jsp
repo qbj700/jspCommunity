@@ -8,13 +8,13 @@
 
 
 <div class="title-bar con-min-width">
-	<h1 class="con">
+	<h1 class="con padding-0-10">
 		<span><i class="fas fa-list"></i></span> <span>${pageTitle }</span>
 	</h1>
 </div>
 
 <div class="con-min-width">
-	<div class="con">
+	<div class="con padding-0-10">
 		<div>
 			<script>
 				let DoSearchForm__submited = false;
@@ -54,7 +54,7 @@
 </div>
 
 <div class="con-min-width">
-	<div class="con">
+	<div class="con padding-0-10">
 		<br />
 		<div>총 게시물 수 : ${totalCount} 개</div>
 		<br />
@@ -63,7 +63,7 @@
 
 
 <div class="article-list-box con-min-width">
-	<div class="con">
+	<div class="con padding-0-10">
 		<table>
 			<colgroup>
 				<col width="100">
@@ -110,7 +110,7 @@
 </div>
 
 <div class="article-btn-box con-min-width">
-	<div class="con btn-wrap">
+	<div class="con padding-0-10 btn-wrap">
 		<a class="btn btn-primary" href="write?boardId=${param.boardId}">글쓰기</a>
 	</div>
 </div>
@@ -124,7 +124,7 @@
 }
 </style>
 <div class="con-min-width">
-	<div class="con flex flex-jc-c">
+	<div class="con padding-0-10 flex flex-jc-c">
 		<c:set var="aUrl"
 			value="?page=1&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
 		<a href="${aUrl}">첫 페이지 &nbsp;</a>
