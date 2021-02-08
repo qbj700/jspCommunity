@@ -6,13 +6,15 @@
 <meta charset="UTF-8">
 <title>중복체크</title>
 
+<!-- 반응형 필수 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 제이쿼리 불러오기 -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style type="text/css">
 #wrap {
-	width: 490px;
+	width: 100%;
 	text-align: center;
 	margin: 0 auto 0 auto;
 }
@@ -92,7 +94,7 @@ if (opener != null) {
 <body onload="pValue()">
 	<div id="wrap">
 		<br> <b><font size="4" color="gray">아이디 중복체크</font></b>
-		<hr size="1" width="460">
+		<hr size="1" width="100%">
 		<br>
 		<div id="chk">
 			<form id="checkForm" onsubmit="return false;">

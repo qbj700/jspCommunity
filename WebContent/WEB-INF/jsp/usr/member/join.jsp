@@ -1,147 +1,217 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="회원가입" />
 
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>${pageTitle }</title>
+
+<!-- 반응형 필수 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 제이쿼리 불러오기 -->
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-<%@ include file="../../part/head.jspf"%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/static/common.css" />
+<script src="${pageContext.request.contextPath}/static/common.js" defer></script>
+</head>
 
-<div class="title-bar con-min-width">
-	<h1 class="con">
-		<span>${pageTitle }</span>
-	</h1>
-</div>
+<body>
+	<section class="join-page flex flex-ai-c flex-jc-c">
+		<div class="join-page__frame">
+			<div class="frame__content-1">
 
 
-<div class="con-min-width">
-	<div class="con padding-0-10">
-		<script>
-			function checkValue() {
-				var form = document.userInfo;
 
-				if (!form.loginId.value.trim()) {
-					alert("아이디를 입력하세요.");
-					return false;
-				}
-
-				if (form.idDuplication.value != "idCheck") {
-					alert("아이디 중복체크를 해주세요.");
-					return false;
-				}
-
-				if (!form.loginPw.value.trim()) {
-					alert("비밀번호를 입력하세요.");
-					return false;
-				}
-
-				// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-				if (form.loginPw.value.trim() != form.loginPwConfirm.value
-						.trim()) {
-					alert("비밀번호를 동일하게 입력하세요.");
-					return false;
-				}
-
-				if (!form.name.value.trim()) {
-					alert("이름을 입력하세요.");
-					return false;
-				}
-
-				if (!form.email1.value.trim()) {
-					alert("메일 주소를 입력하세요.");
-					return false;
-				}
-
-				if (!form.cellphoneNo.value.trim()) {
-					alert("전화번호를 입력하세요.");
-					return false;
-				}
-
-				if (isNaN(form.cellphoneNo.value.trim())) {
-					alert("전화번호는 - 제외한 숫자만 입력해주세요.");
-					return false;
-				}
-
-				form.loginPwReal.value = sha256(form.loginPw.value);
-				form.loginPw.value = "";
-				form.loginPwConfirm.value = "";
-			}
-
-			// 아이디 중복체크 화면open
-			function openIdChk() {
-
-				window.name = "parentForm";
-				window
-						.open("showIdCheckForm", "chkForm",
-								"width=500, height=300, resizable = no, scrollbars = no");
-			}
-
-			// 아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
-			// 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때
-			// 다시 중복체크를 하도록 한다.
-			function inputIdChk() {
-				document.userInfo.idDuplication.value = "idUncheck";
-			}
-		</script>
-		<form autocomplete="off" method="post" action="doJoin" name="userInfo"
-			onsubmit="return checkValue()">
-			<input type="hidden" name="loginPwReal" />
-			<table>
-				<tr>
-					<td id="title">아이디</td>
-					<td><input type="text" name="loginId" maxlength="50"
-						onkeydown="inputIdChk()" autofocus> <input type="button"
-						value="중복확인" onclick="openIdChk()"> <input type="hidden"
-						name="idDuplication" value="idUncheck"></td>
-				</tr>
-
-				<tr>
-					<td id="title">비밀번호</td>
-					<td><input type="password" name="loginPw" maxlength="50">
-					</td>
-				</tr>
-
-				<tr>
-					<td id="title">비밀번호 확인</td>
-					<td><input type="password" name="loginPwConfirm"
-						maxlength="50"></td>
-				</tr>
-
-				<tr>
-					<td id="title">이름</td>
-					<td><input type="text" name="name" maxlength="50"></td>
-				</tr>
-				<tr>
-					<td id="title">별명</td>
-					<td><input type="text" name="nickname" maxlength="50">
-					</td>
-				</tr>
-
-				<tr>
-					<td id="title">이메일</td>
-					<td><input type="text" name="email1" maxlength="50">@
-						<select name="email2">
-							<option>naver.com</option>
-							<option>daum.net</option>
-							<option>gmail.com</option>
-							<option>nate.com</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td id="title">휴대전화</td>
-					<td><input type="tel" name="cellphoneNo" /></td>
-				</tr>
-			</table>
-			<br>
-			<div class="article-btn-box">
-				<div class="btn-wrap">
-					<input type="submit" class="btn btn-primary" value="가입"> <a
-						type="button" class="btn btn-info" onclick="history.back()">뒤로가기</a>
+				<div class="login-logo-box">
+					<a href="../home/main" class="login-logo"> <span>MODUMOA .</span> <i class="fas fa-asterisk"></i>
+					</a>
 				</div>
+
+
+				<div class="title-bar con-min-width">
+					<h1 class="con">
+						<span>${pageTitle }</span>
+					</h1>
+				</div>
+
+				<div class="join-form">
+
+					<script>
+						function checkValue() {
+							var form = document.userInfo;
+
+							if (!form.loginId.value.trim()) {
+								alert("아이디를 입력하세요.");
+								return false;
+							}
+
+							if (form.idDuplication.value != "idCheck") {
+								alert("아이디 중복체크를 해주세요.");
+								return false;
+							}
+
+							if (!form.loginPw.value.trim()) {
+								alert("비밀번호를 입력하세요.");
+								return false;
+							}
+
+							// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+							if (form.loginPw.value.trim() != form.loginPwConfirm.value
+									.trim()) {
+								alert("비밀번호를 동일하게 입력하세요.");
+								return false;
+							}
+
+							if (!form.name.value.trim()) {
+								alert("이름을 입력하세요.");
+								return false;
+							}
+
+							if (!form.email.value.trim()) {
+								alert("메일 주소를 입력하세요.");
+								return false;
+							}
+
+							if (!form.cellphoneNo.value.trim()) {
+								alert("전화번호를 입력하세요.");
+								return false;
+							}
+
+							if (isNaN(form.cellphoneNo.value.trim())) {
+								alert("전화번호는 - 제외한 숫자만 입력해주세요.");
+								return false;
+							}
+
+							form.loginPwReal.value = sha256(form.loginPw.value);
+							form.loginPw.value = "";
+							form.loginPwConfirm.value = "";
+						}
+
+						// 아이디 중복체크 화면open
+						function openIdChk() {
+
+							window.name = "parentForm";
+							window
+									.open("showIdCheckForm", "chkForm",
+											"width=500, height=300, resizable = no, scrollbars = no");
+						}
+
+						// 아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
+						// 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때
+						// 다시 중복체크를 하도록 한다.
+						function inputIdChk() {
+							document.userInfo.idDuplication.value = "idUncheck";
+						}
+					</script>
+
+
+					<form autocomplete="off" method="post" action="doJoin" name="userInfo" onsubmit="return checkValue()">
+						<input type="hidden" name="loginPwReal" />
+						<table>
+							<tr>
+								<td class="flex">
+									<div class="input-form">
+										<input type="text" name="loginId" maxlength="50" onkeydown="inputIdChk()" autocomplete="off" required>
+										<label class="label-name" for="name">
+												<span class="content-name"> 로그인 아이디 </span>
+										</label>
+										<input type="hidden" name="idDuplication" value="idUncheck">
+									</div>
+									<input class="btn btn-primary" type="button" value="중복확인" onclick="openIdChk()">
+								</td>
+							</tr>
+
+							<tr>
+								
+								<td>
+									<div class="input-form">
+										<input type="password" name="loginPw" maxlength="50" autocomplete="off" required>
+										<label class="label-name" for="name">
+											<span class="content-name"> 로그인 비밀번호 </span>
+										</label>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="input-form">
+										<input type="password" name="loginPwConfirm" maxlength="50" autocomplete="off" required>
+										<label class="label-name" for="name">
+											<span class="content-name"> 로그인 비밀번호 확인 </span>
+										</label>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="input-form">
+										<input type=""text"" name="name" maxlength="50" autocomplete="off" required>
+										<label class="label-name" for="name">
+											<span class="content-name"> 이름 </span>
+										</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="input-form">
+										<input type=""text"" name="nickname" maxlength="50" autocomplete="off" required>
+										<label class="label-name" for="name">
+											<span class="content-name"> 별명 </span>
+										</label>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="flex flex-ai-c">
+									<div class="input-form">
+										<input type="email" name="email" maxlength="50" autocomplete="off" required>
+										<label class="label-name" for="name">
+											<span class="content-name"> 이메일 </span>
+										</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="input-form">
+										<input type="tel" name="cellphoneNo" maxlength="50" autocomplete="off" required>
+										<label class="label-name" for="name">
+											<span class="content-name"> 휴대전화 </span>
+										</label>
+									</div>
+								</td>
+							</tr>
+						</table>
+						
+						<br>
+						
+						<div class="article-btn-box">
+							<div class="btn-wrap">
+								<input type="submit" class="btn btn-primary" value="가입">
+								<button type="button" class="btn btn-info" onclick="history.back()">뒤로가기</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
 			</div>
-		</form>
-	</div>
-</div>
-<%@ include file="../../part/foot.jspf"%>
+		</div>
+	</section>
+
+</body>
+</html>

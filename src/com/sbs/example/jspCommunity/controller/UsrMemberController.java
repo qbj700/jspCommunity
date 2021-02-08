@@ -58,19 +58,11 @@ public class UsrMemberController extends Controller {
 			return msgAndBack(req, "별명을 입력해주세요.");
 		}
 
-		String email1 = req.getParameter("email1");
+		String email = req.getParameter("email");
 
-		if (Util.isEmpty(email1)) {
+		if (Util.isEmpty(email)) {
 			return msgAndBack(req, "이메일을 입력해주세요.");
 		}
-
-		String email2 = req.getParameter("email2");
-
-		if (Util.isEmpty(email2)) {
-			return msgAndBack(req, "이메일을 입력해주세요.");
-		}
-
-		String email = email1 + "@" + email2;
 
 		String cellphoneNo = req.getParameter("cellphoneNo");
 
@@ -249,14 +241,6 @@ public class UsrMemberController extends Controller {
 	}
 
 	public String showModify(HttpServletRequest req, HttpServletResponse resp) {
-		Member member = (Member) req.getAttribute("loginedMember");
-		String[] emailBits = member.getEmail().split("@");
-		String email1 = emailBits[0];
-		String email2 = emailBits[1];
-
-		req.setAttribute("email1", email1);
-		req.setAttribute("email2", email2);
-
 		return "usr/member/modify";
 	}
 
@@ -281,19 +265,11 @@ public class UsrMemberController extends Controller {
 			return msgAndBack(req, "별명을 입력해주세요.");
 		}
 
-		String email1 = req.getParameter("email1");
+		String email = req.getParameter("email");
 
-		if (Util.isEmpty(email1)) {
+		if (Util.isEmpty(email)) {
 			return msgAndBack(req, "이메일을 입력해주세요.");
 		}
-
-		String email2 = req.getParameter("email2");
-
-		if (Util.isEmpty(email2)) {
-			return msgAndBack(req, "이메일을 입력해주세요.");
-		}
-
-		String email = email1 + "@" + email2;
 
 		String cellphoneNo = req.getParameter("cellphoneNo");
 

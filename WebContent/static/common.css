@@ -356,7 +356,7 @@ a {
 @media (max-width:720px){
   .login-page__frame {
     width:100%;
-    height:100vh;
+    min-height:100vh;
   }
 }
 
@@ -370,18 +370,18 @@ a {
   box-sizing:border-box;
 }
 /* input 디자인 시작 */
-.login-form__section-1 > * {
+.input-form > * {
   box-sizing:border-box;
 }
 
-.login-form__section-1{
+.input-form{
   margin-top:30px;
   width: 100%;
   position:relative;
   height: 50px;
   overflow: hidden;
 }
-.login-form__section-1 input{
+.input-form input{
   font-size: 16px;
   padding-top: 20px;
   width: 100%;
@@ -391,7 +391,7 @@ a {
   border: none;
   outline: none;
 }
-.login-form__section-1 label{
+.input-form label{
   
   position:absolute;
   bottom: 0px;
@@ -401,7 +401,7 @@ a {
   border-bottom: 1px solid black;
   pointer-events: none;
 }
-.login-form__section-1 label::after{
+.input-form label::after{
   content: "";
   position: absolute;
   bottom: -1px;
@@ -420,14 +420,14 @@ a {
   transition: all 0.3s ease;
 }
 
-.login-form__section-1 input:focus + .label-name .content-name, 
-.login-form__section-1 input:valid + .label-name .content-name{
+.input-form input:focus + .label-name .content-name, 
+.input-form input:valid + .label-name .content-name{
   transform: translateY(-150%);
   font-size: 14px;
   color: #5FA8D3;
 }
-.login-form__section-1 input:focus + .label-name::after, 
-.login-form__section-1 input:valid + .label-name::after{
+.input-form input:focus + .label-name::after, 
+.input-form input:valid + .label-name::after{
   transform:translateX(0%);
 }
 /* input 디자인 끝 */
@@ -643,6 +643,65 @@ a {
   }
 }
 /* 버튼랩 끝 */
+
+/* 회원가입 시작 */
+.join-page {
+  width:100%;
+  min-height:100vh;
+  background-color:#f3f5f7;
+}
+
+.join-page__frame {
+  width:721px;
+  padding:40px 40px;
+  box-sizing:border-box;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  background-color: #fff;
+}
+
+@media (max-width:720px){
+  .join-page__frame {
+    width:100%;
+    min-height:100vh;
+  }
+}
+
+.join-form > form > table {
+	width:100%;
+}
+
+.join-form > form > table > tbody > tr > td > .input-form  {
+	margin-top:10px;
+}
+
+.join-form > form > table > tbody > tr > td > .btn {
+	margin-top:10px;
+	margin-left:30px;
+}
+
+@media (max-width: 720px) {
+  .login-page__frame {
+  	padding: 10px 10px;
+  }
+  
+  .join-form > form > table > tbody > tr > td {
+  	display:block;
+  }
+  
+  .join-form > form > table > tbody > tr > td > .btn {
+  	margin-left:0;
+  }
+}
+  
+
+/* 회원가입 끝 */
+/* 회원 정보 수정 시작 */
+.inputedId {
+	border-bottom:1px solid black;
+	padding-top: 20px;
+}
+
+/* 회원 정보 수정 끝 */
 
 /* 커스텀 끝 */
 

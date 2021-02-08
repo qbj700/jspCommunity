@@ -70,14 +70,14 @@
 		}
 	</script>
 					<form autocomplete="off" action="doFindLoginPw" method="POST" onsubmit="DoFindLoginPwForm__submit(this); return false;">
-						<div class="login-form__section-1">
+						<div class="input-form">
 							<input type="text" name="loginId" autocomplete="off" required>
 							<label class="label-name" for="name"><span
 								class="content-name"> 로그인 아이디 </span></label>
 						</div>
 
 
-						<div class="login-form__section-1">
+						<div class="input-form">
 							<input type="email" name="email" autocomplete="off" required>
 							<label class="label-name" for="name"><span
 								class="content-name"> 회원정보에 등록된 이메일 </span></label>

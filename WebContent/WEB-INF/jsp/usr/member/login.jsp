@@ -77,18 +77,20 @@
 						<input type="hidden" name="loginPwReal" />
 						<input type="hidden" name="afterLoginUrl" value="${param.afterLoginUrl}" />
 
-						<div class="login-form__section-1">
+						<div class="input-form">
 							<input type="text" name="loginId" autocomplete="off" required>
-							<label class="label-name" for="name"><span
-								class="content-name"> 로그인 아이디 </span></label>
+							<label class="label-name" for="name">
+								<span class="content-name"> 로그인 아이디 </span>
+							</label>
 						</div>
 						<div class="find-pw-link"><a href="findLoginId">아이디가 기억나지 않으시나요?</a></div>
 
 
-						<div class="login-form__section-1">
+						<div class="input-form">
 							<input type="password" name="loginPw" autocomplete="off" required>
-							<label class="label-name" for="name"><span
-								class="content-name"> 로그인 비밀번호 </span></label>
+							<label class="label-name" for="name">
+								<span class="content-name"> 로그인 비밀번호 </span>
+							</label>
 						</div>
 						
 						<div class="find-pw-link"><a href="findLoginPw">혹시 비밀번호를 잊으셨나요?</a></div>
