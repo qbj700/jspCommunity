@@ -39,6 +39,17 @@ loginPw = SHA2("user2", 256),
 `email` = "qbj700@gmail.com",
 cellphoneNo = "01011112222";
 
+# 회원3 생성
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = "user3",
+loginPw = SHA2("user3", 256),
+`name` = "홍길동",
+`nickname` = "의적",
+`email` = "qbj700@gmail.com",
+cellphoneNo = "01098765432";
+
 
 # 게시판 테이블 생성
 CREATE TABLE board (
@@ -138,16 +149,32 @@ CREATE TABLE attr(
     INDEX (relTypeCode, typeCode, type2Code)
 );
 
+#임시 (1 ~ 3번)회원 마지막 비밀번호 변경 날짜 설정
 INSERT INTO attr 
 (regDate, updateDate, expireDate, `relTypeCode`, `relId`, `typeCode`, `type2Code`, `value`) 
 VALUES 
-(NOW(), NOW(), DATE_ADD(NOW(), INTERVAL 90 DAY), 'member', '1', 'extra', 'isValidPassword', '1') 
+(NOW(), NOW(), NULL, 'member', '1', 'extra', 'loginPwModifiedDate', NOW()) 
 ON DUPLICATE KEY UPDATE 
-updateDate = NOW() , expireDate = DATE_ADD(NOW(), INTERVAL 90 DAY) , `value` = '1';
+updateDate = NOW() , expireDate = NULL , `value` = NOW();
 
 INSERT INTO attr 
 (regDate, updateDate, expireDate, `relTypeCode`, `relId`, `typeCode`, `type2Code`, `value`) 
 VALUES 
-(NOW(), NOW(), DATE_ADD(NOW(), INTERVAL 30 SECOND), 'member', '2', 'extra', 'isValidPassword', '1') 
+(NOW(), NOW(), NULL, 'member', '2', 'extra', 'loginPwModifiedDate', NOW()) 
 ON DUPLICATE KEY UPDATE 
-updateDate = NOW() , expireDate = DATE_ADD(NOW(), INTERVAL 30 SECOND) , `value` = '1';
+updateDate = NOW() , expireDate = NULL , `value` = NOW();
+
+INSERT INTO attr 
+(regDate, updateDate, expireDate, `relTypeCode`, `relId`, `typeCode`, `type2Code`, `value`) 
+VALUES 
+(NOW(), NOW(), NULL, 'member', '3', 'extra', 'loginPwModifiedDate', NOW()) 
+ON DUPLICATE KEY UPDATE 
+updateDate = NOW() , expireDate = NULL , `value` = NOW();
+
+#임시 (3번)회원 임시 비밀번호 사용 설정
+INSERT INTO attr 
+(regDate, updateDate, expireDate, `relTypeCode`, `relId`, `typeCode`, `type2Code`, `value`) 
+VALUES 
+(NOW(), NOW(), NULL, 'member', '3', 'extra', 'isUsingTempPassword', '1') 
+ON DUPLICATE KEY UPDATE 
+updateDate = NOW() , expireDate = NULL , `value` = '1';

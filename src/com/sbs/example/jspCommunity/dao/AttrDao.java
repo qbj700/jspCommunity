@@ -11,33 +11,21 @@ public class AttrDao {
 		SecSql sql = new SecSql();
 
 		sql.append("INSERT INTO attr (regDate, updateDate, expireDate, `relTypeCode`, `relId`, `typeCode`, `type2Code`, `value`)");
-
-		if (expireDate == null) {
-			sql.append("VALUES (NOW(), NOW(), NULL, ?, ?, ?, ?, ?)", relTypeCode, relId, typeCode, type2Code, value);
-		} else if (expireDate.contains("DATE_ADD")) {
-			sql.append("VALUES (NOW(), NOW(), DATE_ADD(NOW(), INTERVAL 90 DAY), ?, ?, ?, ?, ?)", relTypeCode, relId, typeCode, type2Code, value);
-
-			sql.append("ON DUPLICATE KEY UPDATE");
-			sql.append("updateDate = NOW()");
-
-			if (expireDate.contains("DATE_ADD")) {
-				sql.append(", expireDate = DATE_ADD(NOW(), INTERVAL 90 DAY)");
-			}
-
-			sql.append(", `value` = ?", value);
-
-			return MysqlUtil.update(sql);
-		} else {
+		
+		if ( expireDate == null ) {
+			sql.append("VALUES (NOW(), NOW(), NULL, ?, ?, ?, ?, ?)", relTypeCode, relId, typeCode, type2Code, value);			
+		}
+		else {
 			sql.append("VALUES (NOW(), NOW(), ?, ?, ?, ?, ?, ?)", expireDate, relTypeCode, relId, typeCode, type2Code, value);
 		}
-
+		
 		sql.append("ON DUPLICATE KEY UPDATE");
 		sql.append("updateDate = NOW()");
-
-		if (expireDate != null) {
+		
+		if ( expireDate != null ) {
 			sql.append(", expireDate = ?", expireDate);
 		}
-
+		
 		sql.append(", `value` = ?", value);
 
 		return MysqlUtil.update(sql);

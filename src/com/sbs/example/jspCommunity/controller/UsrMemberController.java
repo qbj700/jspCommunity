@@ -93,7 +93,6 @@ public class UsrMemberController extends Controller {
 		joinArgs.put("cellphoneNo", cellphoneNo);
 
 		int id = memberService.join(joinArgs);
-		Container.attrService.setValue("member__" + id + "__extra__isValidPassword", "1", "DATE_ADD(NOW(), INTERVAL 90 DAY)");
 
 		// 가입축하 이메일 발송
 		// memberService.sendCongratulationsEmail(name, nickname, email);
@@ -131,14 +130,22 @@ public class UsrMemberController extends Controller {
 		HttpSession session = req.getSession();
 		session.setAttribute("loginedMemberId", member.getId());
 
-		boolean isUsingTempPassword = memberService.getIsUsingTempPassword(member.getId());
-
 		String alertMsg = String.format("%s님 환영합니다.", member.getNickname());
 		String replaceUrl = "../home/main";
 
 		if (Util.isEmpty(req.getParameter("afterLoginUrl")) == false) {
 			replaceUrl = req.getParameter("afterLoginUrl");
 		}
+
+		boolean isNeedToModifyOldLoginPw = memberService.isNeedToModifyOldLoginPw(member.getId());
+
+		if (isNeedToModifyOldLoginPw) {
+			int oldPasswordDays = memberService.getOldPasswordDays();
+			alertMsg = String.format("가장 마지막 비밀번호 변경일로부터 " + oldPasswordDays + "일이 경과하였습니다. 비밀번호를 변경해주세요.");
+			replaceUrl = "../member/modify";
+		}
+
+		boolean isUsingTempPassword = memberService.isUsingTempPassword(member.getId());
 
 		if (isUsingTempPassword) {
 			alertMsg = String.format("%s님은 현재 임시 비밀번호를 사용중입니다. 변경 후 이용해주세요.", member.getNickname());
@@ -232,7 +239,7 @@ public class UsrMemberController extends Controller {
 		}
 
 		ResultData sendTempLoginPwToEmailRs = memberService.sendTempLoginPwToEmail(member);
-		Container.attrService.setValue("member__" + member.getId() + "__extra__isValidPassword", "1", "DATE_ADD(NOW(), INTERVAL 90 DAY)");
+		memberService.setLoginPwModifiedNow(member.getId());
 
 		if (sendTempLoginPwToEmailRs.isFail()) {
 			return msgAndBack(req, sendTempLoginPwToEmailRs.getMsg());
@@ -260,11 +267,6 @@ public class UsrMemberController extends Controller {
 
 		if (loginPw != null && loginPw.length() == 0) {
 			loginPw = null;
-		}
-
-		if (loginPw != null && loginPw.length() > 0) {
-			Container.attrService.remove("member__" + loginedMemberId + "__extra__isUsingTempPassword");
-			Container.attrService.setValue("member__" + loginedMemberId + "__extra__isValidPassword", "1", "DATE_ADD");
 		}
 
 		String name = req.getParameter("name");
@@ -309,6 +311,10 @@ public class UsrMemberController extends Controller {
 		modifyParam.put("id", loginedMemberId);
 
 		memberService.modify(modifyParam);
+
+		if (loginPw != null) {
+			memberService.setIsUsingTempPassword(loginedMemberId, false);
+		}
 
 		return msgAndReplace(req, "회원정보가 수정되었습니다.", "../home/main");
 	}
