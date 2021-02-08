@@ -75,6 +75,7 @@
 					<form autocomplete="off" action="doLogin" method="POST"
 						onsubmit="DoLoginForm__submit(this); return false;">
 						<input type="hidden" name="loginPwReal" />
+						<input type="hidden" name="afterLoginUrl" value="${param.afterLoginUrl}" />
 
 						<div class="login-form__section-1">
 							<input type="text" name="loginId" autocomplete="off" required>
