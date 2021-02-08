@@ -85,7 +85,7 @@
 
 
 						<div class="login-form__section-1">
-							<input type="text" name="loginPw" autocomplete="off" required>
+							<input type="password" name="loginPw" autocomplete="off" required>
 							<label class="label-name" for="name"><span
 								class="content-name"> 로그인 비밀번호 </span></label>
 						</div>
