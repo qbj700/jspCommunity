@@ -8,12 +8,6 @@ if ( alertMsg ) {
 	alert(alertMsg);
 }
 
-var alertMsg2 = '<%=request.getAttribute("alertMsg2")%>'.trim();
-
-if ( alertMsg2 != "null") {
-	alert(alertMsg2);
-}
-
 var historyBack = '<%=request.getAttribute("historyBack")%>' == 'true';
 
 if ( historyBack ){

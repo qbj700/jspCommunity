@@ -56,9 +56,9 @@ public abstract class DispatcherServlet extends HttpServlet {
 
 		String requestUri = req.getRequestURI();
 		String[] requestUriBits = requestUri.split("/");
-		
+
 		int minBitsCount = 5;
-		
+
 		if (App.isProductMode()) {
 			minBitsCount = 4;
 		}
@@ -66,25 +66,24 @@ public abstract class DispatcherServlet extends HttpServlet {
 		if (requestUriBits.length < minBitsCount) {
 			resp.getWriter().append("올바른 요청이 아닙니다.");
 			return null;
-		}		
-				
-		if (App.isProductMode()) {
-		  MysqlUtil.setDBInfo("127.0.0.1", "sbsstLocal", "sbs123414", "jspCommunityReal");
 		}
-		else {
-		  MysqlUtil.setDBInfo("127.0.0.1", "sbsst", "sbs123414", "jspCommunity");			
+
+		if (App.isProductMode()) {
+			MysqlUtil.setDBInfo("127.0.0.1", "sbsstLocal", "sbs123414", "jspCommunityReal");
+		} else {
+			MysqlUtil.setDBInfo("127.0.0.1", "sbsst", "sbs123414", "jspCommunity");
 		}
 
 		int controllerTypeNameIndex = 2;
 		int controllerNameIndex = 3;
 		int actionMethodNameIndex = 4;
-		
+
 		if (App.isProductMode()) {
 			controllerTypeNameIndex = 1;
 			controllerNameIndex = 2;
 			actionMethodNameIndex = 3;
 		}
-		
+
 		String controllerTypeName = requestUriBits[controllerTypeNameIndex];
 		String controllerName = requestUriBits[controllerNameIndex];
 		String actionMethodName = requestUriBits[actionMethodNameIndex];
@@ -96,7 +95,7 @@ public abstract class DispatcherServlet extends HttpServlet {
 		int loginedMemberId = 0;
 		Member loginedMember = null;
 		boolean isUsingTempPassword = false;
-		boolean needToChangePw = false; 
+		boolean needToChangePw = false;
 
 		HttpSession session = req.getSession();
 
@@ -104,12 +103,9 @@ public abstract class DispatcherServlet extends HttpServlet {
 			isLogined = true;
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
 			loginedMember = Container.memberService.getMemberById(loginedMemberId);
-			
-			String isUsingTempPasswordValue = Container.attrService.getValue("member__" + loginedMemberId + "__extra__isUsingTempPassword");
-			if (isUsingTempPasswordValue.equals("1")) {
-				isUsingTempPassword = true;
-			}
-			
+
+			isUsingTempPassword = Container.memberService.getIsUsingTempPassword(loginedMemberId);
+
 			String needToChangePwValue = Container.attrService.getValue("member__" + loginedMemberId + "__extra__isValidPassword");
 			if (needToChangePwValue == "") {
 				needToChangePw = true;
