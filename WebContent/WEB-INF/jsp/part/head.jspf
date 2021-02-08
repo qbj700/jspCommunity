@@ -57,15 +57,7 @@
 		</c:if>
 
 		<header class="mobile-top-bar con-min-width visible-sm-down flex">
-			<!-- 모바일 사이드바 시작 -->
-			<div class=" flex-1-0-0 flex ">
-				<div class="mobile-top-bar__btn-toggle-side-bar flex-as-c">
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
-			</div>
-			<!-- 모바일 사이드바 끝 -->
+			<div class=" flex-1-0-0"></div>
 			<!-- 모바일 로고바 시작 -->
 
 			<div class="mobile-logo-bar con-min-width height-100p flex">
@@ -77,7 +69,15 @@
 			</div>
 
 			<!-- 모바일 로고바 끝 -->
-			<div class=" flex-1-0-0"></div>
+			<!-- 모바일 사이드바 시작 -->
+			<div class=" flex-1-0-0 flex flex-jc-e">
+				<div class="mobile-top-bar__btn-toggle-side-bar flex-as-c">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			<!-- 모바일 사이드바 끝 -->
 		</header>
 		<!-- 모바일 탑바 끝 -->
 		<!-- 모바일 사이드바 시작 -->

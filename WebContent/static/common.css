@@ -222,7 +222,7 @@ a {
   width:20px;
   height:20px;
   position:relative;
-  margin-left:10px;
+  margin-right:10px;
   cursor:pointer;
 }
 
@@ -264,7 +264,7 @@ a {
 .mobile-side-bar {
   position:fixed;
   top:var(--mobile-top-bar__height);
-  left:-100%;
+  left:100%;
   width:100%;
   height:100%;
   background-image: linear-gradient(94deg,skyblue,pink);
@@ -454,6 +454,11 @@ a {
   border: 2px solid skyblue;
   border-radius:5px;
 }
+
+.login-submit:hover {
+	cursor:pointer;
+}
+
 .find-pw-link {
   text-align:end;
   margin-top:20px;
