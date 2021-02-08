@@ -8,6 +8,8 @@
 
 <div class="con-min-width">
 	<div class="con">
+
+		<h>TEST</h>
 		<a href="../article/list?boardId=1">공지사항 게시물 리스트</a>
 	</div>
 </div>
