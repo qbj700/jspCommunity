@@ -74,19 +74,25 @@ Editor__init();
 //토스트 에디터 끝
 
 function MobileTopBar__init() {
-  $('.mobile-top-bar__btn-toggle-side-bar').click(function() {
-    let $this = $(this);
-    
-    if ( $this.hasClass('active') ) {
-      $this.removeClass('active');
-      $('.mobile-side-bar').removeClass('active');
-    }
-    else {
-      $this.addClass('active');
-      $('.mobile-side-bar').addClass('active');
-    }
-  });
+	$('.mobile-top-bar__btn-toggle-mobile-side-bar').click(function() {
+		if ( $(this).hasClass('active') ) {
+			MobileTopBar__hide();
+		}
+		else {
+			MobileTopBar__show();
+		}
+	});
 }
 
-MobileTopBar__init();
+function MobileTopBar__show() {
+	$('.mobile-top-bar__btn-toggle-mobile-side-bar').addClass('active');
+	$('html').addClass('mobile-side-bar-actived');
+}
+
+function MobileTopBar__hide() {
+	$('.mobile-top-bar__btn-toggle-mobile-side-bar').removeClass('active');
+	$('html').removeClass('mobile-side-bar-actived');
+}
+
+MobileTopBar__init(); 
 

@@ -71,7 +71,7 @@
 			<!-- 모바일 로고바 끝 -->
 			<!-- 모바일 사이드바 시작 -->
 			<div class=" flex-1-0-0 flex flex-jc-e">
-				<div class="mobile-top-bar__btn-toggle-side-bar flex-as-c">
+				<div class="mobile-top-bar__btn-toggle-mobile-side-bar flex-as-c">
 					<div></div>
 					<div></div>
 					<div></div>
@@ -81,7 +81,46 @@
 		</header>
 		<!-- 모바일 탑바 끝 -->
 		<!-- 모바일 사이드바 시작 -->
-		<aside class="mobile-side-bar visible-sm-down"></aside>
+		<aside class="mobile-side-bar visible-sm-down">
+			<nav class="mobile-side-bar__menu-box-1">
+				<ul>
+					<c:if test="${isLogined == false}">
+						<li>
+							<a class="block" href="../member/login"> 
+								<span><i class="far fa-user"></i></span>
+								<span>로그인</span>
+							</a>
+						</li>
+						<li>
+							<a class="block" href="../member/join"> 
+								<span><i class="fas fa-sign-in-alt"></i></span> 
+								<span>회원가입</span>
+							</a>
+						</li>
+					</c:if>
+					<c:if test="${isLogined}">
+						<li>
+							<a class="block" href="../article/write?boardId=1"> 
+								<span><i class="fas fa-plus"></i></span> 
+								<span>공지사항 글쓰기</span>
+							</a>
+						</li>
+						<li>
+							<a class="block" href="../member/modify"> 
+								<span><i class="fas fa-user-edit"></i></span> 
+								<span>회원정보 수정</span>
+							</a>	
+						</li>
+						<li>
+							<a class="block" href="../member/doLogout" onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }">
+								<span><i class="fas fa-sign-out-alt"></i></span> 
+								<span>로그아웃</span>
+							</a>
+						</li>
+					</c:if>
+				</ul>			
+			</nav>
+		</aside>
 		<!-- 모바일 사이드바 끝 -->
 
 
@@ -103,29 +142,48 @@
 				<nav class="top-bar__sign-menu visible-md-up">
 					<ul class="flex height-100p">
 						<c:if test="${isLogined == false}">
-							<li><a class="flex flex-ai-c height-100p"
-								href="../member/login"> <span><i class="far fa-user"></i></span>
+							<li>
+								<a class="flex flex-ai-c height-100p" href="../member/login"> 
+									<span>
+										<i class="far fa-user"></i>
+									</span>
 									<span>로그인</span>
-							</a></li>
-							<li><a class="flex flex-ai-c height-100p"
-								href="../member/join"> <span><i
-										class="fas fa-sign-in-alt"></i></span> <span>회원가입</span>
-							</a></li>
+								</a>
+							</li>
+							<li>
+								<a class="flex flex-ai-c height-100p" href="../member/join"> 
+									<span>
+										<i class="fas fa-sign-in-alt"></i>
+									</span> 
+									<span>회원가입</span>
+								</a>
+							</li>
 						</c:if>
 						<c:if test="${isLogined}">
-							<li><a class="flex flex-ai-c height-100p"
-								href="../article/write?boardId=1"> <span><i
-										class="fas fa-plus"></i></span> <span>공지사항 글쓰기</span>
-							</a></li>
-							<li><a class="flex flex-ai-c height-100p"
-								href="../member/modify"> <span><i
-										class="fas fa-user-edit"></i></span> <span>회원정보 수정</span>
-							</a></li>
-							<li><a class="flex flex-ai-c height-100p"
-								href="../member/doLogout"
-								onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }">
-									<span><i class="fas fa-sign-out-alt"></i></span> <span>로그아웃</span>
-							</a></li>
+							<li>
+								<a class="flex flex-ai-c height-100p" href="../article/write?boardId=1"> 
+									<span>
+										<i class="fas fa-plus"></i>\
+									</span> 
+									<span>공지사항 글쓰기</span>
+								</a>
+							</li>
+							<li>
+								<a class="flex flex-ai-c height-100p" href="../member/modify"> 
+									<span>
+										<i class="fas fa-user-edit"></i>
+									</span> 
+									<span>회원정보 수정</span>
+								</a>
+							</li>
+							<li>
+								<a class="flex flex-ai-c height-100p" href="../member/doLogout" onclick="if ( confirm('정말 로그아웃 하시겠습니까?') == false ) { return false; }">
+									<span>
+										<i class="fas fa-sign-out-alt"></i>
+									</span> 
+									<span>로그아웃</span>
+								</a>
+							</li>
 						</c:if>
 					</ul>
 				</nav>
