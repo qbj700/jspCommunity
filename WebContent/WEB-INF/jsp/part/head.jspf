@@ -163,7 +163,7 @@
 							<li>
 								<a class="flex flex-ai-c height-100p" href="../article/write?boardId=1"> 
 									<span>
-										<i class="fas fa-plus"></i>\
+										<i class="fas fa-plus"></i>
 									</span> 
 									<span>공지사항 글쓰기</span>
 								</a>
