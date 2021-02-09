@@ -151,6 +151,10 @@ a {
   color:deeppink;
 }
 
+.color-red {
+	color: red;
+}
+
 .padding-0-10 {
 	padding: 0 10px;
 }
@@ -547,11 +551,27 @@ html.mobile-side-bar-actived .mobile-side-bar {
   margin-top:30px;
   margin-bottom:10px;
 }
+
+@media (max-width:720px){
+	.title-bar {
+		font-size:14px;
+	}
+}
+
+@media (max-width:520px){
+	.title-bar {
+		font-size:10px;
+	}
+}
 /* 타이틀 끝 */
 
 /* 게시물 리스트 박스 시작 */
 
 /* 게시물 리스트 박스 - PC 시작 */
+.article-list-box {
+	margin-top:30px;
+}
+
 .article-list-box > .con > table {
   width:100%;
   border-collapse:collapse;
@@ -620,10 +640,119 @@ html.mobile-side-bar-actived .mobile-side-bar {
     margin-right:5px;
   }
 }
-
 /* 게시물 리스트 박스 - MOBILE 끝 */
 
 /* 게시물 리스트 박스 끝 */
+
+/* 게시물 리스트 페이지박스 시작 */
+.article-list-page-box {
+	margin-top:30px;
+}
+
+.article-list-page-box > .con > a {
+  padding:10px;
+  border:1px solid transparent;
+  margin:0 5px;
+}
+
+.article-list-page-box__page-btn--no {
+	border-color:#dfdfdf !important;
+}
+
+.article-list-page-box__page-btn--no.color-red {
+	border-color: #afafaf !important;
+}
+
+@media ( max-width:720px ) {
+	.article-list-page-box > .con > a {
+	  padding:7px;
+	  border:0 solid transparent;
+	  margin:0;
+	}
+}
+/* 게시물 리스트 페이지박스 끝 */
+
+/* 게시물 버튼박스 시작 */
+.article-btn-box {
+	margin-top:20px;
+}
+/* 게시물 리스트 버튼박스 끝 */
+
+/* 게시물 리스트 게시물 개수 박스 시작 */
+.article-list-total-count-box {
+	margin-top:30px;
+}
+/* 게시물 리스트 게시물 개수 박스 끝 */
+
+/* 폼박스 시작 */
+.form-box > form {
+  display: block;
+  width: 100%;
+}
+
+.form-box > form > table {
+  border-top: 3px solid black;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.form-box > form > table > tbody > tr > th {
+  text-align: left;
+}
+
+.form-box > form > table > tbody > tr > th,
+.form-box > form > table > tbody > tr > td {
+  padding: 10px 0;
+}
+
+.form-box > form > table > tbody > tr > td > div {
+  display: flex;
+}
+
+.form-box > form > table > tbody > tr > td > div > :only-child {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-box > form > table > tbody > tr > td > div > select {
+	padding: 10px;
+}
+
+.form-box > form > table > tbody > tr > td > div > input[type="text"],
+.form-box > form > table > tbody > tr > td > div > input[type="password"],
+.form-box > form > table > tbody > tr > td > div > input[type="tel"],
+.form-box > form > table > tbody > tr > td > div > input[type="email"] {
+  flex: 1 0 0;
+  padding: 10px;
+}
+
+.form-box > form > table > tbody > tr > td > div > input + .btn {
+  margin-left: 10px;
+}
+
+@media (max-width: 800px) {
+  .form-box > form > table > tbody > tr,
+  .form-box > form > table > tbody > tr > th,
+  .form-box > form > table > tbody > tr > td {
+    display: block;
+  }
+
+  .form-box > form > table > tbody > tr {
+    border-bottom: 1px solid #dfdfdf;
+  }
+
+  .form-box > form > table > tbody > tr > td > div {
+    flex-wrap: wrap;
+  }
+
+  .form-box > form > table > tbody > tr > td > div > input + .btn {
+    margin-left: 0;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+  }
+}
+/* 폼박스 끝 */
 
 /* 게시물 버튼 박스 시작 */
 .article-btn-box > .con {

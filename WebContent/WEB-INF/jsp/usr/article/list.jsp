@@ -13,51 +13,87 @@
 	</h1>
 </div>
 
-<div class="con-min-width">
-	<div class="con padding-0-10">
-		<div>
-			<script>
-				let DoSearchForm__submited = false;
-				function DoSearchForm__submit(form) {
-					form.searchKeyword.value = form.searchKeyword.value.trim();
+<div class="article-search-form-box form-box padding-0-10">
+	<script>
+		let DoSearchForm__submited = false;
+		function DoSearchForm__submit(form) {
+			form.searchKeyword.value = form.searchKeyword.value.trim();
 
-					if (DoSearchForm__submited) {
-						alert('처리중입니다.');
-						return;
-					}
-					
-					form.submit();
-					DoSearchForm__submited = true;
-				}
-			</script>
-			<form action="" onsubmit="DoSearchForm__submit(this); return false;">
-				<input type="hidden" name="boardId" value="${param.boardId}" /> <select
-					name="searchKeywordType">
-					<option value="titleAndBody">제목+본문</option>
-					<option value="title">제목</option>
-					<option value="body">본문</option>
-				</select>
-				<script>
-					const param__searchKeywordType = '${param.searchKeywordType}';
-
-					if (param__searchKeywordType) {
-						$('select[name="searchKeywordType"]').val(
-								param__searchKeywordType);
-					}
-				</script>
-				<input value="${param.searchKeyword}" type="text"
-					name="searchKeyword" placeholder="검색어를 입력해주세요." /> <input
-					type="submit" value="검색" />
-			</form>
-		</div>
-	</div>
+			if (DoSearchForm__submited) {
+				alert('처리중입니다.');
+				return;
+			}
+			
+			form.submit();
+			DoSearchForm__submited = true;
+		}
+	</script>
+			
+	<form class="con" action="" onsubmit="DoSearchForm__submit(this); return false;">
+		<input type="hidden" name="boardId" value="${param.boardId}" />
+			<table>
+			<colgroup>
+				<col width="150">
+			</colgroup>
+			<tbody>
+				<tr>
+					<th>
+						<span> 검색조건</span>
+					</th>
+					<td>
+						<div>
+							<select name="searchKeywordType">
+								<option value="titleAndBody">제목+본문</option>
+								<option value="title">제목</option>
+								<option value="body">본문</option>
+							</select>
+						</div>
+						<script>
+						const param__searchKeywordType = '${param.searchKeywordType}';
+						
+						if ( param__searchKeywordType ) {
+							$('select[name="searchKeywordType"]').val(param__searchKeywordType);
+						}
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>검색어</span>
+					</th>
+					<td>
+						<div>
+							<input value="${param.searchKeyword}" type="text"
+								name="searchKeyword" placeholder="검색어를 입력해주세요." />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>검색</span>
+					</th>
+					<td>
+						<div>
+							<input class="btn btn-primary" type="submit" value="검색" />
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
 </div>
 
-<div class="con-min-width">
+<div class="article-list-total-count-box con-min-width">
 	<div class="con padding-0-10">
-		<br />
-		<div>총 게시물 수 : ${totalCount} 개</div>
-		<br />
+		<div>
+			<span>
+				<i class="fas fa-clipboard-list"></i>
+			</span>
+			<span>총 게시물 수 : </span>
+			<span class="color-red">
+				${totalCount}
+			</span>	
+		</div>
 	</div>
 </div>
 
@@ -117,17 +153,13 @@
 
 <br />
 <br />
-
-<style>
-.red {
-	color: red;
-}
-</style>
-<div class="con-min-width">
+<div class="article-list-page-box con-min-width">
 	<div class="con padding-0-10 flex flex-jc-c">
+		<!-- 
 		<c:set var="aUrl"
 			value="?page=1&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
 		<a href="${aUrl}">첫 페이지 &nbsp;</a>
+		 -->
 
 		<c:if test="${pageBoxStartBeforeBtnNeedToShow}">
 			<c:set var="aUrl"
@@ -136,20 +168,21 @@
 		</c:if>
 		<c:forEach var="i" begin="${pageBoxStartPage}" end="${pageBoxEndPage}"
 			step="1">
-			<c:set var="aClass" value="${page == i ? 'red' : '' }" />
+			<c:set var="aClass" value="${page == i ? 'color-red' : '' }" />
 			<c:set var="aUrl"
 				value="?page=${i}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
-			<a class="${aClass}" href="${aUrl}">${i}</a>
+			<a class="${aClass} article-list-page-box__page-btn--no" href="${aUrl}">${i}</a>
 		</c:forEach>
 		<c:if test="${pageBoxEndAfterBtnNeedToShow}">
 			<c:set var="aUrl"
 				value="?page=${pageBoxEndAfterPage}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
 			<a href="${aUrl}">▶</a>
 		</c:if>
-
+		<!-- 
 		<c:set var="aUrl"
 			value="?page=${totalPage}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
 		<a href="${aUrl}">&nbsp; 끝 페이지</a>
+		 -->
 	</div>
 </div>
 <%@ include file="../../part/foot.jspf"%>
