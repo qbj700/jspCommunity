@@ -122,13 +122,13 @@
 						</td>
 						<td><span class="article-list-box__writer">${article.extra__writer}</span>
 						</td>
-						<td><a href="detail?id=${article.id}"
+						<td><a href="../article/detail?id=${article.id}&listUrl=${encodedCurrentUrl}"
 							class="article-list-box__title article-list-box__title--pc">${article.title}</a>
 						</td>
 						<td class="visible-sm-down">
 							<div class="flex">
 								<span class="article-list-box__id article-list-box__id--mobile">3</span>
-								<a href="detail?id=${article.id}"
+								<a href="../article/detail?id=${article.id}&listUrl=${encodedCurrentUrl}"
 									class="article-list-box__title article-list-box__title--mobile flex-grow-1">${article.title}</a>
 							</div>
 							<div class="flex">
@@ -166,11 +166,9 @@
 				value="?page=${pageBoxStartBeforePage}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
 			<a href="${aUrl}">◀</a>
 		</c:if>
-		<c:forEach var="i" begin="${pageBoxStartPage}" end="${pageBoxEndPage}"
-			step="1">
+		<c:forEach var="i" begin="${pageBoxStartPage}" end="${pageBoxEndPage}" step="1">
 			<c:set var="aClass" value="${page == i ? 'color-red' : '' }" />
-			<c:set var="aUrl"
-				value="?page=${i}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
+			<c:set var="aUrl" value="?page=${i}&boardId=${param.boardId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
 			<a class="${aClass} article-list-page-box__page-btn--no" href="${aUrl}">${i}</a>
 		</c:forEach>
 		<c:if test="${pageBoxEndAfterBtnNeedToShow}">

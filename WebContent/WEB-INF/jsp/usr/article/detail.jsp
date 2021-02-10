@@ -78,7 +78,7 @@
 		
 <div class="article-btn-box padding-0-10 con-min-width">
 	<div class="con btn-wrap">
-		<a class="btn btn-info" href="list?boardId=${article.boardId}">리스트</a>
+		<a class="btn btn-info" href="${param.listUrl}">리스트</a>
 		<a class="btn btn-info" href="modify?id=${article.id}">수정</a>
 		<a class="btn btn-danger" onclick="if ( confirm('정말 삭제하시겠습니까?') == false ) { return false; }"
 		href="doDelete?id=${article.id}">삭제</a>
