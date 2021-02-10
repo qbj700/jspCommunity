@@ -702,7 +702,7 @@ html.mobile-side-bar-actived .mobile-side-bar {
   padding: 20px 0;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 720px) {
   .detail-box > .con > table > tbody > tr,
   .detail-box > .con > table > tbody > tr > th,
   .detail-box > .con > table > tbody > tr > td {
@@ -767,7 +767,7 @@ html.mobile-side-bar-actived .mobile-side-bar {
   margin-left: 10px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 720px) {
   .form-box > form > table > tbody > tr,
   .form-box > form > table > tbody > tr > th,
   .form-box > form > table > tbody > tr > td {
