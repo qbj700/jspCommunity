@@ -676,18 +676,50 @@ html.mobile-side-bar-actived .mobile-side-bar {
 	}
 }
 /* 게시물 리스트 페이지박스 끝 */
-
 /* 게시물 버튼박스 시작 */
 .article-btn-box {
 	margin-top:20px;
 }
 /* 게시물 리스트 버튼박스 끝 */
-
 /* 게시물 리스트 게시물 개수 박스 시작 */
 .article-list-total-count-box {
 	margin-top:30px;
 }
 /* 게시물 리스트 게시물 개수 박스 끝 */
+/* 상세내용박스 시작 */
+.detail-box > .con > table {
+  border-top: 3px solid black;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.detail-box > .con > table > tbody > tr > th {
+  text-align: left;
+}
+
+.detail-box > .con > table > tbody > tr > th,
+.detail-box > .con > table > tbody > tr > td {
+  padding: 20px 0;
+}
+
+@media (max-width: 800px) {
+  .detail-box > .con > table > tbody > tr,
+  .detail-box > .con > table > tbody > tr > th,
+  .detail-box > .con > table > tbody > tr > td {
+    display: block;
+  }
+
+  .detail-box > .con > table > tbody > tr {
+    border-bottom: 1px solid #dfdfdf;
+  }
+}
+/* 상세내용 박스 끝 */
+
+/* 토스트UI에디터 시작 */
+.tui-editor-contents {
+	font-family: inherit;
+}
+/* 토스트UI에디터 끝 */
 
 /* 폼박스 시작 */
 .form-box > form {
