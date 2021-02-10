@@ -29,6 +29,11 @@ body, ul, li, h1, h2, h3 {
   padding:0;
   list-style:none;
 }
+
+html, body {
+	overflow-x: hidden;
+}
+
 a {
   color:inherit;
   text-decoration:none;
