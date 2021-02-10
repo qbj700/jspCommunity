@@ -1,5 +1,7 @@
 package com.sbs.example.jspCommunity.util;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -72,8 +74,7 @@ public class MysqlUtil {
 
 			Connection connection = null;
 
-			String url = "jdbc:mysql://" + dbHost + "/" + dbName
-					+ "?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull&connectTimeout=60";
+			String url = "jdbc:mysql://" + dbHost + "/" + dbName + "?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull&connectTimeout=60";
 			try {
 				connection = DriverManager.getConnection(url, dbLoginId, dbLoginPw);
 				connections.put(currentThreadId, connection);
@@ -116,7 +117,11 @@ public class MysqlUtil {
 					String columnName = metaData.getColumnName(columnIndex + 1);
 					Object value = rs.getObject(columnName);
 
-					if (value instanceof Long) {
+					if (value instanceof BigDecimal) {
+						row.put(columnName, ((BigDecimal) value).intValue());
+					} else if (value instanceof BigInteger) {
+						row.put(columnName, ((BigInteger) value).intValue());
+					} else if (value instanceof Long) {
 						int numValue = (int) (long) value;
 						row.put(columnName, numValue);
 					} else if (value instanceof Timestamp) {

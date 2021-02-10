@@ -1,5 +1,6 @@
 package com.sbs.example.jspCommunity.dto;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import lombok.Data;
@@ -14,6 +15,8 @@ public class Article {
 	private int memberId;
 	private int boardId;
 	private int hitsCount;
+	
+	private Map<String, Object> extra;
 
 	private String extra__writer;
 	private String extra__boardName;
@@ -39,5 +42,6 @@ public class Article {
 			this.extra__boardCode = (String) articleMap.get("extra__boardCode");
 		}
 
+		this.extra = new LinkedHashMap<>();
 	}
 }

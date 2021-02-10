@@ -178,3 +178,16 @@ VALUES
 (NOW(), NOW(), NULL, 'member', '3', 'extra', 'isUsingTempPassword', '1') 
 ON DUPLICATE KEY UPDATE 
 updateDate = NOW() , expireDate = NULL , `value` = '1';
+
+# 좋아요 테이블 추가
+CREATE TABLE `like` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    relTypeCode CHAR(30) NOT NULL,
+    relId INT(10) UNSIGNED NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    `point` SMALLINT(1) UNSIGNED NOT NULL,
+    INDEX (`relTypeCode`, `relId`, `memberId`) # 인덱스 추가
+);
+
