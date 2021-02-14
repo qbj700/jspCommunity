@@ -17,4 +17,27 @@ public class LikeDao {
 		return MysqlUtil.selectRowIntValue(sql);
 	}
 
+	public int removePoint(String relTypeCode, int relId, int memberId) {
+		SecSql sql = new SecSql();
+		sql.append("DELETE FROM `like`");
+		sql.append("WHERE 1");
+		sql.append("AND relTypeCode = ?", relTypeCode);
+		sql.append("AND relId = ?", relId);
+		sql.append("AND memberId = ?", memberId);
+
+		return MysqlUtil.delete(sql);
+	}
+	public int setPoint(String relTypeCode, int relId, int memberId, int point) {
+		SecSql sql = new SecSql();
+		sql.append("INSERT INTO `like`");
+		sql.append("SET regDate = NOW()");
+		sql.append(", updateDate = NOW()");
+		sql.append(", relTypeCode = ?", relTypeCode);
+		sql.append(", relId = ?", relId);
+		sql.append(", memberId = ?", memberId);
+		sql.append(", `point` = ?", point);
+
+		return MysqlUtil.insert(sql);
+	}
+
 }

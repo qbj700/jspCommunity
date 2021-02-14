@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.controller.UsrArticleController;
 import com.sbs.example.jspCommunity.controller.UsrHomeController;
+import com.sbs.example.jspCommunity.controller.UsrLikeController;
 import com.sbs.example.jspCommunity.controller.UsrMemberController;
 
 @WebServlet("/usr/*")
@@ -71,6 +72,18 @@ public class UsrDispatcherServlet extends DispatcherServlet {
 				jspPath = articleController.doDelete(req, resp);
 			}
 
+		}else if (controllerName.equals("like")) {
+			UsrLikeController likeController = Container.usrLikeController;
+
+			if (actionMethodName.equals("doLike")) {
+				jspPath = likeController.doLike(req, resp);
+			} else if (actionMethodName.equals("doCancelLike")) {
+				jspPath = likeController.doCancelLike(req, resp);
+			} else if (actionMethodName.equals("doDislike")) {
+				jspPath = likeController.doDislike(req, resp);
+			} else if (actionMethodName.equals("doCancelDislike")) {
+				jspPath = likeController.doCancelDislike(req, resp);
+			}
 		}
 		return jspPath;
 	}
