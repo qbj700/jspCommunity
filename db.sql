@@ -187,7 +187,7 @@ CREATE TABLE `like` (
     relTypeCode CHAR(30) NOT NULL,
     relId INT(10) UNSIGNED NOT NULL,
     memberId INT(10) UNSIGNED NOT NULL,
-    `point` SMALLINT(1) UNSIGNED NOT NULL,
+    `point` SMALLINT(1) NOT NULL,
     INDEX (`relTypeCode`, `relId`, `memberId`) # 인덱스 추가
 );
 

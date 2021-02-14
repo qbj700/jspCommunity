@@ -48,6 +48,22 @@
 				</tr>
 				<tr>
 					<th>
+						<span>좋아요</span>
+					</th>
+					<td>
+						<div>${article.extra__likeOnlyPoint}</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>싫어요</span>
+					</th>
+					<td>
+						<div>${article.extra__dislikeOnlyPoint}</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
 						<span>작성자</span>
 					</th>
 					<td>
@@ -72,8 +88,6 @@
 		</table>
 	</div>
 </div>
-
-		<hr />
 		
 		
 <div class="article-btn-box padding-0-10 con-min-width">

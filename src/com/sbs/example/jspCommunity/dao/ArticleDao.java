@@ -59,10 +59,23 @@ public class ArticleDao {
 	public Article getForPrintArticleById(int id) {
 
 		SecSql sql = new SecSql();
-		sql.append("SELECT article.*,member.name AS extra__writer");
-		sql.append("FROM article");
-		sql.append("INNER JOIN member");
-		sql.append("ON article.id = ? AND article.memberId = member.id", id);
+		sql.append("SELECT A.*");
+		sql.append(", M.name AS extra__writer");
+		sql.append(", B.name AS extra__boardName");
+		sql.append(", B.code AS extra__boardCode");
+		sql.append(", IFNULL(SUM(L.point), 0) AS extra__likePoint");
+		sql.append(", IFNULL(SUM(IF (L.point > 0, L.point, 0)), 0) AS extra__likeOnlyPoint");
+		sql.append(", IFNULL(SUM(IF (L.point < 0, L.point * -1, 0)), 0) AS extra__dislikeOnlyPoint");
+		sql.append("FROM article AS A");
+		sql.append("INNER JOIN `member` AS M");
+		sql.append("ON A.memberId = M.id");
+		sql.append("INNER JOIN `board` AS B");
+		sql.append("ON A.boardId = B.id");
+		sql.append("LEFT JOIN `like` AS L");
+		sql.append("ON L.relTypeCode = 'article'");
+		sql.append("AND A.id = L.relId");
+		sql.append("WHERE A.id = ?", id);
+		sql.append("GROUP BY A.id");
 
 		Map<String, Object> articleMap = MysqlUtil.selectRow(sql);
 
