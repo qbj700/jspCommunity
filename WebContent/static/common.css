@@ -209,6 +209,7 @@ a {
 .mobile-top-bar {
   height:var(--mobile-top-bar__height);
   background-image: linear-gradient(94deg,skyblue,pink);
+  z-index:1000;
 }
 
 .mobile-logo{
@@ -282,6 +283,7 @@ a {
   display:flex;
   align-items:center;
   transition:left 0.3s, opacity 0.3s, visibility 0.3s;
+  z-index:1000;
 }
 
 html.mobile-side-bar-actived .mobile-side-bar {
@@ -552,6 +554,9 @@ html.mobile-side-bar-actived .mobile-side-bar {
 /* 임시 비밀번호 경고 시작*/
 
 /* 타이틀 시작 */
+main > .title-bar:not(:first-child){
+	margin-top:20px;
+}
 .title-bar {
   margin-top:30px;
   margin-bottom:10px;

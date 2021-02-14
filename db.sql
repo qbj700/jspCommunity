@@ -191,3 +191,14 @@ CREATE TABLE `like` (
     INDEX (`relTypeCode`, `relId`, `memberId`) # 인덱스 추가
 );
 
+# 댓글 테이블 추가
+CREATE TABLE `reply` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    relTypeCode CHAR(30) NOT NULL,
+    relId INT(10) UNSIGNED NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    `body` TEXT NOT NULL,
+    INDEX (`relTypeCode`, `relId`) # 인덱스 추가
+);

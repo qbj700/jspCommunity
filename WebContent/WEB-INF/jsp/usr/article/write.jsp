@@ -15,7 +15,7 @@
 	</h1>
 </div>
 
-<div class="article-modify-form-box form-box padding-0-10 con-min-width">
+<div class="article-write-form-box form-box padding-0-10 con-min-width">
 	<script>
 		let DoWriteForm__submited = false;
 		let DoWriteForm__checkedLoginId = "";
