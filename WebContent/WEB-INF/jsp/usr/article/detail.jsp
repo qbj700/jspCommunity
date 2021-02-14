@@ -95,7 +95,7 @@
 	
 		<c:if test="${article.extra.actorCanLike}">
 			<a class="btn btn-primary" href="${param.listUrl}">
-				<span><i class="fas fa-thumbs-up"></i></span>
+				<span><i class="far fa-thumbs-up"></i></span>
 				<span>좋아요</span>
 			</a>
 		</c:if>
@@ -109,7 +109,7 @@
 
 		<c:if test="${article.extra.actorCanDislike}">
 			<a class="btn btn-danger" href="${param.listUrl}">
-				<span><i class="fas fa-thumbs-down"></i></span>
+				<span><i class="far fa-thumbs-down"></i></span>
 				<span>싫어요</span>
 			</a>
 		</c:if>

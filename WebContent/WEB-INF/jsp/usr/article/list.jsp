@@ -105,25 +105,41 @@
 				<col width="100">
 				<col width="200">
 				<col width="150">
+				<col width="150">
 			</colgroup>
 			<thead>
 				<tr>
 					<th>번호</th>
 					<th>날짜</th>
 					<th>작성자</th>
+					<th>좋아요</th>
 					<th>제목</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="article" items="${articles }">
 					<tr class="hover-link">
-						<td><span class="article-list-box__id">${article.id}</span></td>
-						<td><span class="article-list-box__reg-date">${article.regDate}</span>
+						<td>
+							<span class="article-list-box__id">${article.id}</span>
 						</td>
-						<td><span class="article-list-box__writer">${article.extra__writer}</span>
+						<td>
+							<span class="article-list-box__reg-date">${article.regDate}</span>
 						</td>
-						<td><a href="../article/detail?id=${article.id}&listUrl=${encodedCurrentUrl}"
-							class="article-list-box__title article-list-box__title--pc">${article.title}</a>
+						<td>
+							<span class="article-list-box__writer">${article.extra__writer}</span>
+						</td>
+						<td>
+							<span>
+								<i class="far fa-thumbs-up"></i>
+							</span>
+							<span class="article-list-box__likeOnlyPoint">${article.extra__likeOnlyPoint}</span>
+							<span>
+								<i class="far fa-thumbs-down"></i>
+							</span>
+							<span class="article-list-box__dislikeOnlyPoint">${article.extra__dislikeOnlyPoint}</span>
+						</td>
+						<td>
+							<a href="../article/detail?id=${article.id}&listUrl=${encodedCurrentUrl}" class="article-list-box__title article-list-box__title--pc">${article.title}</a>
 						</td>
 						<td class="visible-sm-down">
 							<div class="flex">
@@ -131,11 +147,22 @@
 								<a href="../article/detail?id=${article.id}&listUrl=${encodedCurrentUrl}"
 									class="article-list-box__title article-list-box__title--mobile flex-grow-1">${article.title}</a>
 							</div>
+							
 							<div class="flex">
-								<span
-									class="article-list-box__writer article-list-box__writer--mobile">${article.extra__writer}</span>
-								<span>|</span> <span
-									class="article-list-box__reg-date article-list-box__reg-date--mobile">${article.regDate}</span>
+								<span>
+									<i class="far fa-thumbs-up"></i>
+								</span>
+								<span class="article-list-box__likeOnlyPoint">${article.extra__likeOnlyPoint}</span>
+								<span>
+									<i class="far fa-thumbs-down"></i>
+								</span>
+								<span class="article-list-box__dislikeOnlyPoint">${article.extra__dislikeOnlyPoint}</span>
+							</div>
+							
+							<div class="flex">
+								<span class="article-list-box__writer article-list-box__writer--mobile">${article.extra__writer}</span>
+								<span>|</span> 
+								<span class="article-list-box__reg-date article-list-box__reg-date--mobile">${article.regDate}</span>
 							</div>
 						</td>
 					</tr>
