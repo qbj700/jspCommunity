@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.sbs.example.jspCommunity.dto.Article;
 import com.sbs.example.jspCommunity.dto.Reply;
 import com.sbs.example.jspCommunity.util.MysqlUtil;
 import com.sbs.example.jspCommunity.util.SecSql;
@@ -54,5 +53,29 @@ public class ReplyDao {
 		}
 
 		return replies;
+	}
+
+	public Reply getReply(int id) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT R.*");
+		sql.append("FROM reply AS R");
+		sql.append("WHERE 1");
+		sql.append("AND R.id = ?", id);
+
+		Map<String, Object> map = MysqlUtil.selectRow(sql);
+
+		if (map.isEmpty()) {
+			return null;
+		}
+
+		return new Reply(map);
+	}
+
+	public int delete(int id) {
+		SecSql sql = new SecSql();
+		sql.append("DELETE FROM reply");
+		sql.append("WHERE id = ?", id);
+
+		return MysqlUtil.delete(sql);
 	}
 }
