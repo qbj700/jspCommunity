@@ -98,7 +98,7 @@
 </div>
 
 
-<div class="article-list-box con-min-width">
+<div class="response-list-box con-min-width">
 	<div class="con padding-0-10">
 		<table>
 			<colgroup>
@@ -120,49 +120,49 @@
 				<c:forEach var="article" items="${articles }">
 					<tr class="hover-link">
 						<td>
-							<span class="article-list-box__id">${article.id}</span>
+							<span class="response-list-box__id">${article.id}</span>
 						</td>
 						<td>
-							<span class="article-list-box__reg-date">${article.regDate}</span>
+							<span class="response-list-box__reg-date">${article.regDate}</span>
 						</td>
 						<td>
-							<span class="article-list-box__writer">${article.extra__writer}</span>
+							<span class="response-list-box__writer">${article.extra__writer}</span>
 						</td>
 						<td>
 							<span>
 								<i class="far fa-thumbs-up"></i>
 							</span>
-							<span class="article-list-box__likeOnlyPoint">${article.extra__likeOnlyPoint}</span>
+							<span class="response-list-box__likeOnlyPoint">${article.extra__likeOnlyPoint}</span>
 							<span>
 								<i class="far fa-thumbs-down"></i>
 							</span>
-							<span class="article-list-box__dislikeOnlyPoint">${article.extra__dislikeOnlyPoint}</span>
+							<span class="response-list-box__dislikeOnlyPoint">${article.extra__dislikeOnlyPoint}</span>
 						</td>
 						<td>
-							<a href="../article/detail?id=${article.id}&listUrl=${encodedCurrentUrl}" class="article-list-box__title article-list-box__title--pc">${article.title}</a>
+							<a href="../article/detail?id=${article.id}&listUrl=${encodedCurrentUrl}" class="response-list-box__title response-list-box__title--pc">${article.title}</a>
 						</td>
 						<td class="visible-sm-down">
 							<div class="flex">
-								<span class="article-list-box__id article-list-box__id--mobile">3</span>
+								<span class="response-list-box__id response-list-box__id--mobile">3</span>
 								<a href="../article/detail?id=${article.id}&listUrl=${encodedCurrentUrl}"
-									class="article-list-box__title article-list-box__title--mobile flex-grow-1">${article.title}</a>
+									class="response-list-box__title response-list-box__title--mobile flex-grow-1">${article.title}</a>
 							</div>
 							
 							<div class="flex">
 								<span>
 									<i class="far fa-thumbs-up"></i>
 								</span>
-								<span class="article-list-box__likeOnlyPoint">${article.extra__likeOnlyPoint}</span>
+								<span class="response-list-box__likeOnlyPoint">${article.extra__likeOnlyPoint}</span>
 								<span>
 									<i class="far fa-thumbs-down"></i>
 								</span>
-								<span class="article-list-box__dislikeOnlyPoint">${article.extra__dislikeOnlyPoint}</span>
+								<span class="response-list-box__dislikeOnlyPoint">${article.extra__dislikeOnlyPoint}</span>
 							</div>
 							
 							<div class="flex">
-								<span class="article-list-box__writer article-list-box__writer--mobile">${article.extra__writer}</span>
+								<span class="response-list-box__writer response-list-box__writer--mobile">${article.extra__writer}</span>
 								<span>|</span> 
-								<span class="article-list-box__reg-date article-list-box__reg-date--mobile">${article.regDate}</span>
+								<span class="response-list-box__reg-date response-list-box__reg-date--mobile">${article.regDate}</span>
 							</div>
 						</td>
 					</tr>
