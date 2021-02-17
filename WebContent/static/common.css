@@ -164,6 +164,14 @@ a {
 	padding: 0 10px;
 }
 
+.padding-10-0 {
+	padding: 10px 0;
+}
+
+.padding-10-10 {
+	padding: 10px 10px;
+}
+
 /* 커스텀 시작 */
 :root {
   --site-width:1044px;
@@ -939,6 +947,50 @@ main > .title-bar:not(:first-child){
 }
 
 /* 회원 정보 수정 끝 */
+/* 메인페이지 시작 */
+.latest-list-box {
+	border:5px solid skyblue;	
+	border-radius:10px;
+}
+
+.article-body-box {
+	padding:0 5px;
+}
+
+.article-body-box > div:last-child {
+	margin-top:5px;
+}
+
+.article-body-box img{
+	height:250px;
+	width:100%;
+}
+
+@media (max-width:1044px){
+	.article-body-box img{
+		height:400px;
+		width:400px;
+	}
+	.article-body-box {
+		margin:10px 10px;
+	}
+	.latest-list-box{
+		flex-wrap:wrap;
+		justify-content:center;
+	}
+}
+@media (max-width:550px){
+	.article-body-box img{
+		display:block;
+		width:100%;
+		height:100%;
+	}
+	.title-bar > h1 > span:last-child {
+	 margin-right:20px;
+	}
+}
+
+/* 메인페이지 끝 */
 
 /* 커스텀 끝 */
 

@@ -65,7 +65,7 @@ var param = ${paramJson};
 			<div class=" flex-1-0-0"></div>
 			<!-- 모바일 로고바 시작 -->
 
-			<div class="mobile-logo-bar con-min-width height-100p flex">
+			<div class="mobile-logo-bar height-100p flex">
 				<div class="con padding-0-10 flex-as-c">
 					<a href="../home/main" class="mobile-logo"> <span
 						class="logo__text">MODUMOA .</span> <i class="fas fa-asterisk"></i>
@@ -104,12 +104,6 @@ var param = ${paramJson};
 						</li>
 					</c:if>
 					<c:if test="${isLogined}">
-						<li>
-							<a class="block" href="../article/write?boardId=1"> 
-								<span><i class="fas fa-plus"></i></span> 
-								<span>공지사항 글쓰기</span>
-							</a>
-						</li>
 						<li>
 							<a class="block" href="../member/modify"> 
 								<span><i class="fas fa-user-edit"></i></span> 
@@ -165,14 +159,6 @@ var param = ${paramJson};
 							</li>
 						</c:if>
 						<c:if test="${isLogined}">
-							<li>
-								<a class="flex flex-ai-c height-100p" href="../article/write?boardId=1"> 
-									<span>
-										<i class="fas fa-plus"></i>
-									</span> 
-									<span>공지사항 글쓰기</span>
-								</a>
-							</li>
 							<li>
 								<a class="flex flex-ai-c height-100p" href="../member/modify"> 
 									<span>

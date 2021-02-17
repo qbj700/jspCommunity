@@ -196,4 +196,31 @@ public class ArticleDao {
 		return MysqlUtil.selectRowIntValue(sql);
 	}
 
+	public List<Article> getForPrintArticlesByBoardCode(String boardCode) {
+		List<Article> articles = new ArrayList<>();
+
+		SecSql sql = new SecSql();
+		sql.append("SELECT A.*");
+		sql.append(", M.name AS extra__writer");
+		sql.append(", B.name AS extra__boardName");
+		sql.append(", B.code AS extra__boardCode");
+		sql.append("FROM article AS A");
+		sql.append("INNER JOIN `member` AS M");
+		sql.append("ON A.memberId = M.id");
+		sql.append("INNER JOIN `board` AS B");
+		sql.append("ON A.boardId = B.id");
+		sql.append("WHERE B.code = ?", boardCode);
+		sql.append("ORDER BY A.id DESC");
+		sql.append("LIMIT 4");
+
+		List<Map<String, Object>> articleListMap = MysqlUtil.selectRows(sql);
+
+		for (Map<String, Object> articleMap : articleListMap) {
+
+			articles.add(new Article(articleMap));
+		}
+
+		return articles;
+	}
+
 }
