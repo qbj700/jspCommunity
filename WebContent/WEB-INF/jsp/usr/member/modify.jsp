@@ -106,7 +106,7 @@
 								<td>
 									<div class="input-form">
 										<input type="password" name="loginPw" maxlength="50"
-											autocomplete="off" required> <label
+											autocomplete="off"> <label
 											class="label-name" for="name"> <span
 											class="content-name"> 로그인 비밀번호 </span>
 										</label>
@@ -118,7 +118,7 @@
 								<td>
 									<div class="input-form">
 										<input type="password" name="loginPwConfirm" maxlength="50"
-											autocomplete="off" required> <label
+											autocomplete="off"> <label
 											class="label-name" for="name"> <span
 											class="content-name"> 로그인 비밀번호 확인 </span>
 										</label>
@@ -130,7 +130,7 @@
 								<td>
 									<div class="input-form">
 										<input type="" text"" name="name" maxlength="50"
-											autocomplete="off" required> <label
+											autocomplete="off" value="${loginedMember.name}" required> <label
 											class="label-name" for="name"> <span
 											class="content-name"> 이름 </span>
 										</label>
@@ -141,7 +141,7 @@
 								<td>
 									<div class="input-form">
 										<input type="" text"" name="nickname" maxlength="50"
-											autocomplete="off" required> <label
+											autocomplete="off" value="${loginedMember.nickname}" required> <label
 											class="label-name" for="name"> <span
 											class="content-name"> 별명 </span>
 										</label>
@@ -153,7 +153,7 @@
 								<td class="flex flex-ai-c">
 									<div class="input-form">
 										<input type="email" name="email" maxlength="50"
-											autocomplete="off" required> <label
+											autocomplete="off" value="${loginedMember.email}" required> <label
 											class="label-name" for="name"> <span
 											class="content-name"> 이메일 </span>
 										</label>
@@ -164,7 +164,7 @@
 								<td>
 									<div class="input-form">
 										<input type="tel" name="cellphoneNo" maxlength="50"
-											autocomplete="off" required> <label
+											autocomplete="off" value="${loginedMember.cellphoneNo}" required> <label
 											class="label-name" for="name"> <span
 											class="content-name"> 휴대전화 </span>
 										</label>
@@ -177,7 +177,7 @@
 
 						<div class="article-btn-box">
 							<div class="btn-wrap">
-								<input type="submit" class="btn btn-primary" value="가입">
+								<input type="submit" class="btn btn-primary" value="수정">
 								<button type="button" class="btn btn-info"
 									onclick="history.back()">뒤로가기</button>
 							</div>
