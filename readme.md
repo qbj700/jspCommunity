@@ -10,10 +10,28 @@
   </a>
 </p>
 
+
 ### 사이트 바로가기 [modumoa.site](https://modumoa.site)
+<br>
+
+### 포트폴리오 - 바로가기
+[커뮤니티 사이트 기획서](https://drive.google.com/file/d/1lhhku9HOb1FBjSfP4r_rog3JGWcc55TA/view?usp=sharing)
+<br>
+[커뮤니티 사이트 기술 설명서](https://drive.google.com/file/d/1_jP1vVjUTr-2nMv0xy2_ESeMkCf5MRaY/view?usp=sharing)
+<br>
+<br>
 
 ## 프로젝트 소개
-JAVA및 JSP를 기반으로 유사MVC 구조를 사용하여 커뮤티니 게시판인 modumoa 사이트를 개설하는 프로잭트.
+이 프로젝트는 JAVA기반으로 Servlet 및 JSP 를 이용한 MVC 구조의 
+커뮤니티 사이트 이며, 개인 프로젝트 입니다.
+
+해당 프로젝트는 회원가입을 통해 자유롭게 이용할 수 있도록 구현하였고,
+서버 배포를 진행하여 지속적으로 관리하고 있습니다.
+
+<br>
+<br>
+<br>
+<br>
 
 
 
@@ -37,7 +55,10 @@ JAVA및 JSP를 기반으로 유사MVC 구조를 사용하여 커뮤티니 게시
 * JDBC
 * MariaDB
 * jQuery
+* Ajax
 
+<br>
+<br>
 
 ## 현재 구현된 기능
 
@@ -67,16 +88,18 @@ JAVA및 JSP를 기반으로 유사MVC 구조를 사용하여 커뮤티니 게시
 - [x] 게시물 검색
 - [x] 게시물 페이징
 - [x] 토스트 에디터 붙이기
-- [x] 댓글
+- [x] 댓글 작성
 - [x] 좋아요, 싫어요
 - [x] 대댓글
 - [x] 댓글, ajax화
-- [x] 댓글 좋아요, 싫어요
+
 
 ## 추후 구현할 기능
 - [ ] 댓글멘션
+- [ ] 댓글 수정
 - [ ] 내 글에 새 댓글 알림
 - [ ] 내 댓글에 추가 댓글 알림
+- [ ] 댓글 좋아요, 싫어요
 - [ ] 태그
 - [ ] 파일업로드
 - [ ] 회원인증
@@ -84,6 +107,7 @@ JAVA및 JSP를 기반으로 유사MVC 구조를 사용하여 커뮤티니 게시
 - [ ] 1:1 쪽지
 - [ ] 신고
 - [ ] 게시물 블라인드
+
 
 
 
